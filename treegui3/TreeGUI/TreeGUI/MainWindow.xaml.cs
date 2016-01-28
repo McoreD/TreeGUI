@@ -68,5 +68,13 @@ namespace TreeGUI
         {
             Program.SaveSettings();
         }
+
+        private void HelpVersionHistory_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void HelpAbout_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
