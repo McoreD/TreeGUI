@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeGUI"
         mc:Ignorable="d"
-        Title="ConfigWindow" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinHeight="400" MinWidth="400">
+        Title="Config Window" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinHeight="400" MinWidth="400">
     <Grid>
         <xctk:PropertyGrid Grid.Column="1"
                                x:Name="propertyGrid"

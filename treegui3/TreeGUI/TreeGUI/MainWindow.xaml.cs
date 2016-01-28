@@ -76,5 +76,25 @@ namespace TreeGUI
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnIndex_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnMoveUp_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnMoveDown_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
