@@ -1,0 +1,50 @@
+﻿<Window x:Class="TreeGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeGUI"
+        mc:Ignorable="d"
+        Title="TreeGUI" Height="350" Width="525" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="243*" />
+            <ColumnDefinition Width="274*" />
+        </Grid.ColumnDefinitions>
+        <Menu IsMainMenu="True" Grid.ColumnSpan="2">
+            <MenuItem Header="_File" Click="FileMenuItem_Click">
+                <MenuItem Header="_New..." />
+                <MenuItem Header="_Open..." Command="ApplicationCommands.Open">
+                    <MenuItem.InputBindings>
+                        <KeyBinding Key="O" Modifiers="Control" Command="ApplicationCommands.Open" />
+                    </MenuItem.InputBindings>
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Open"
+                    Executed="FileOpenCommandBinding_Executed"
+                    CanExecute="FileOpenCommandBinding_CanExecute" />
+                        <CommandBinding Command="Open" Executed="FileOpenCommandBinding_Executed"></CommandBinding>
+                    </MenuItem.CommandBindings>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="_Save" />
+                <MenuItem Header="Save _As..." />
+                <Separator></Separator>
+                <MenuItem Header="E_xit" Command="ApplicationCommands.Close">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Close"
+                    Executed="FileExitCommandBinding_Executed"
+                    CanExecute="FileExitCommandBinding_CanExecute" />
+                    </MenuItem.CommandBindings>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit" />
+            <MenuItem Header="Fol_ders" />
+            <MenuItem Header="_Logs" />
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Options..." Click="ToolsSettings_Click" />
+                <MenuItem Header="_Config1 Properties..." Click="ToolsConfigProperties_Click" />
+            </MenuItem>
+            <MenuItem Header="_Help" />
+        </Menu>
+    </Grid>
+</Window>

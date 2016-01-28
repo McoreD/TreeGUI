@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TreeGUI", "TreeGUI\TreeGUI.vbproj", "{325CA492-B0AD-4349-BED5-2E29ED2B959D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14BF2820-E204-4648-8EB7-F0BDD75DC25C} = {14BF2820-E204-4648-8EB7-F0BDD75DC25C}
+		{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3} = {5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "McoreIndexer", "McoreIndexer\McoreIndexer.vbproj", "{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TreeLib", "TreeLib\TreeLib.vbproj", "{14BF2820-E204-4648-8EB7-F0BDD75DC25C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{325CA492-B0AD-4349-BED5-2E29ED2B959D}.Debug.ActiveCfg = Debug|.NET
+		{325CA492-B0AD-4349-BED5-2E29ED2B959D}.Debug.Build.0 = Debug|.NET
+		{325CA492-B0AD-4349-BED5-2E29ED2B959D}.Release.ActiveCfg = Release|.NET
+		{325CA492-B0AD-4349-BED5-2E29ED2B959D}.Release.Build.0 = Release|.NET
+		{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}.Debug.ActiveCfg = Debug|.NET
+		{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}.Debug.Build.0 = Debug|.NET
+		{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}.Release.ActiveCfg = Release|.NET
+		{5BE612D1-D86D-41A3-B9DE-C7CD90B170E3}.Release.Build.0 = Release|.NET
+		{14BF2820-E204-4648-8EB7-F0BDD75DC25C}.Debug.ActiveCfg = Debug|.NET
+		{14BF2820-E204-4648-8EB7-F0BDD75DC25C}.Debug.Build.0 = Debug|.NET
+		{14BF2820-E204-4648-8EB7-F0BDD75DC25C}.Release.ActiveCfg = Release|.NET
+		{14BF2820-E204-4648-8EB7-F0BDD75DC25C}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+* TreeGUI Features *
+
+Create XHTML 1.1 compatible index files that are customizable using CSS
+Compress large index files after indexing
+Tasks folder to index multiple config files at one time
+Index according to an Interval or Date & Time
+Windows Service to configure and forget
+Virtual Folder support to ease Remote Access
+Scan MP3 ID3v2 for Audio Bit Rate and Length
+
+Read the TreeGUI Manual for more information.
+
+* IMPORTANT *
+
+Please stop McoreIndexer Windows Service before you continue.
+
+* Versioning *
+
+*.0.0.0 implies Major rewrite of the application
+x.*.0.0 implies New features
+x.y.*.0 implies Minor tweaks to existing features
+x.y.z.* implies Bug fixes
+
+* Credits * 
+
+TreeGUI v2.8 and above uses the "TagLib" 
+
+
+* Credits *
+
+TreeGUI v2.3 and above uses the "UltraIDLib: MP3 ID3 Tag Editor"
+
+UltraIDLib: MP3 ID3 Tag Editor and MPEG Info Reader Library
+Hundred Miles Software (www.HundredMilesSoftware.com)
+Copyright 2002
+Author: Mitchell S. Honnert
+
+Home Page: www.UltraID3Lib.com

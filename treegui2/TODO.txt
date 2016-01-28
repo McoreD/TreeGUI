@@ -1,0 +1,2 @@
+Extend File class to AudioFile 
+AudioFile to generate AudioInfo if the Config says so

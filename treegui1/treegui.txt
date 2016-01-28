@@ -1,0 +1,25 @@
+13:10 2006-05-21
+
+TreeGUI Version 1 development is ceased for Version 2.
+
+08:03 2005-09-12
+
+The new BETA version of TreeGUI seems to be doing the job as expected. In event viewer you will see the logs created by McoreIndexer after performing each indexing job. 
+
+21:46 2005-09-11
+
+Althought it looked like, McoreIndexer actually indexed all the .tgc files on its second round. It was too late however, the source code was already changed in an attempt to fix the problem assumed earlier. The new version is currently under testing. 
+
+14:28 2005-09-11
+
+A BETA version of TreeGUI that does this is developed. It looks like the indexer is accessing each file every xxx minutes where xxx is the interval set in TreeGUI. This should not be the case. It should instead index all the files in the folder and then wait for xxx minutes. 
+
+09:42 2005-09-11
+
+When you press Index Now in the GUI, it should only index the current .tgc file, NOT all the .tgc files in the tasks folder. Only Windows Indexer should access all the .tgc files in Tasks folder and perform the indexing operation one by one. 
+
+The TreeLib.dll is responsible for opening the .tgc file. The McoreIndexer creates a new instance of TreeLib.dll passing the current .tgc file. The For Each loop should be in Timer1_Elapsed method.
+
+09:39 2005-09-11
+
+The current design of TreeGUI does not support indexing multiple configuration files using the Windows Service. It only indexes the TreeGUI.exe.tgc. The design should modify so that both Indexer and GUI will index all the .tgc in a Tasks folder. For Each .tgc file in the Tasks folder, index one after the other. 

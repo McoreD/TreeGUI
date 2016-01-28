@@ -1,0 +1,19 @@
+Version 1.6
+
+McoreIndexer can index all the TreeGUI Config files in the application folder. To index multiple profiles simply create a new Config File in the application directory. Please read the manual for detailed information. 
+
+Version 1.5 RTM
+
+To index just one folder, simply right click the folder in the Folder List and click Index this folder or press Ctrl+G.
+
+Version 1.5 BETA 2 
+
+TreeGUI is back to Multiple Instaces. To set which tgc file McoreIndexer should use, right click the Application and click "Set this Configuration as Default" or simply press Ctrl+S. Windows Service will always use the folder list saved in TreeGUI.exe.tgc. 
+
+Version 1.5 BETA 1
+
+TreeGUI Config file extension is changed from .config to .tgc. To migrate from .config to .tgc you should rename the extension to .tgc. You can also use Open With in Windows and choose TreeGUI. It will read the settings from TreeGUI and save it as a new .tgc file. You can now delete the old .config file. 
+
+To create a new TreeGUI Configuration, create a copy of a .tgc file and open it in TreeGUI. Remove the folders, add new folders and change other settings and close TreeGUI. You now have a new .tgc file
+
+McoreIndexer will always use TreeGUI.exe.tgc in the Application directory which is the same config file as the last used. 

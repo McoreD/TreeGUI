@@ -1,0 +1,361 @@
+Version 2.11 - 20080131?
+
+2.11.0.0 Ability to sort directories by size: Ascending or Descending
+2.10.0.0 Integrate TreeGUI into Shell Context Menu to right click and create an index file (Options > Advanced)
+
+Version 2.9 - 20071217
+
+2.9.7.0 Support zipping a Logo image to be used with the XHTML file when configured in CSS
+2.9.6.1 Collapsing folders feature is now optional via Config > Tree.NET > XHTML
+2.9.6.0 Using ICSharpCode.SharpZipLib.dll instead of Zip.dll for better interoperability with iTSfv - iTunes Store file validator
+2.9.5.0 Rearranged Config Form for Tree.NET settings
+2.9.4.0 Remember Window Size and Position [war59312/McoreD]
+2.9.3.1 Delete All Index files... function did not delete html files [war59312]
+2.9.3.0 Included support for audio information in TXT files
+2.9.2.1 Fixed Filter to Ignore Empty Folders [war59312]
+2.9.2.0 Added Browse Tasks Folder shortcut to Logs menu
+2.9.1.0 Option to Ignore Empty Folders [war59312/McoreD]
+2.9.1.0 Added Filter to Ignore Empty Folders [war59312]
+2.9.0.8 System cannot find the file specified MessageBox when double clicked Index Folder, is removed and the message is shown in the Status Bar instead [war59312]
+2.9.0.7 TreeGUI will create the index in the same folder if the customized Output folder does not exist [war59312]
+2.9.0.6 Showing file count broke folder collapsing [war59312]
+2.9.0.5 Improvement in readability for Text files with indented files list [HotRod]
+2.9.0.4 TreeGUI will load without being Maximized by default. Configurable in Options > Appearance [war59312]
+2.9.0.3 File Count will ignore the files in the filter list [war59312]
+2.9.0.2 Folders without files were not collapsable
+2.9.0.1 Folders did not collapse for deep folder hierachies [HotRod]
+2.9.0.0 Added Expandable/Collapsable Folder Listing by war59312
+2.8.4.0 Supported customizing CSS for File Size and Audio Info
+2.8.3.1 Fixed bug that would prevent overwriting zip index files
+2.8.3.0 Using taglib-sharp.dll instead of UltraID3.dll for reading MP3 files
+
+Version 2.8.2 - 20071006
+
+2.8.2.0 Files such as .DS_Store|*.db|index.html will be ignored by default
+2.8.1.0 Directory Indexer will use the embedded Default.css if the external css cannot be found
+2.8.0.0 Drag and Drop folders to Directory Indexer aka TreeGUI
+
+Version 2.7.5 - 20070624
+
+2.7.5.1 Failed to load tgc files with long file names as tray icon text size exceeded 64 characters
+2.7.5.0 Changed from GZip compression to Zip compression saving files in .zip
+2.7.4.0 Adding subfolders recursively can now be controlled by depth
+2.7.3.0 Windows Service will report currently logged on User in the Startup log
+2.7.2.0 Added Logs menu to quickly open log files created using TreeGUI
+2.7.1.6 TreeGUI crashed on Could not find a part of the path
+
+Version 2.7.1 - 20061228
+
+2.7.1.5 Check Updates URL changed from PowWeb to WMwiki
+2.7.1.4 Default CSS file is read from Application startup path default.css when current file does not exit
+2.7.1.3 Set CSS file path to default if CSS file does not exist
+2.7.1.2 File > New still carried over settings from previously opened tgc file
+2.7.1.1 TreeGUI failed to index when Decimal Symbol set to a charactor other than dot [1537730]
+2.7.1.0 Indexing Engine Names are now read by Config
+2.7.0.1 Display Indexer Engine name for each config in TreeGUI.Indexer.log
+2.7.0.0 Tools > Delete All Index Files will send all index files to Recycle Bin
+2.6.1.0 Enable/Disable Filtering is now Configuration file dependent
+2.6.0.0 Indexer Settings are now completely Configuration file dependent
+2.5.1.2 Display TreeGUI version in TreeGUI.Indexer.log
+2.5.1.1 Indexer halted if a configuration file had non-existent folders paths
+2.5.1.0 Log exceptions while indexing to TreeGUI.Indexer.log
+2.5.0.0 Windows Service can now execute any Command Scripts located in Task Folder
+
+Version 2.4 (20060707)
+
+2.4.1.6 Version History and Release Notes forms resized to 640x480
+2.4.1.5 Did not ask to save changes while opening via MRU list
+2.4.1.4 Apply button was not enabled for filter textbox changes
+2.4.1.3 MRU config files list was not updated for Save As
+2.4.1.2 Indexing according to Date&Time did not work after 2.3.4.2
+2.4.1.1 Restoring Options file did not function correctly
+2.4.1.0 Read Options file everytime before Options form is loaded
+2.4.0.3 IsScheduledForToday was determined from CheckBoxes rather than XML
+2.4.0.2 Attempted to open non-existent config files from MRU list
+2.4.0.1 Warn that MP3 tags scanning will take roughly 1000 MP3/minute
+2.4.0.0 Displays most recently used (MRU) list of config files in File menu
+2.3.5.4 Support Forum changed from BetaONE forums to SourceForge forums
+2.3.5.3 Footer Text modified to link SourceForge download page
+2.3.5.2 Updates page changed from Softpedia to SourceForge
+2.3.5.1 Currently indexed folder name is now displayed in Status Bar prior to indexing
+
+Version 2.3 (20060702)
+
+2.3.5.0 Config Form will now show Tree.NET page by default
+2.3.4.2 IsScheduledForToday value was saved in TreeGUI.xml
+2.3.4.1 Moved ServerInfo from TreeGUI.xml to Config1.tgc
+2.3.4.0 Enhanced Folder Heading Style for Tree Walk Utility
+2.3.3.2 TreeGUI will now display errors to the user if Indexing fails
+2.3.3.1 Moved FolderHeadingStyle from TreeGUI.xml to Config1.tgc
+2.3.3.0 TreeGUI now opens maximized by default [modifiable via TreeGUI.xml]
+2.3.2.0 Expanded Configuration properties by porting Config1.tgc settings
+2.3.1.1 File > New config carried some settings from already opened config
+2.3.1.0 Hide Directory Size [via Config1.tgc]
+2.3.0.0 Reads Bit Rate and Length for MP3 files [see Release Notes]
+
+Version 2.2 BETA 2 (20060622)
+
+2.2.7.1 InitialDirectory defaults to Tasks Folder Path for File > Open
+2.2.7.0 TreeGUI will check for TreeGUI.xml options file in its folder
+2.2.6.0 Show total File Count for each folder [via Config1.tgc]
+2.2.5.7 Temporarily disabled BugReport function for progress bar errors
+2.2.5.6 Index Checked Items crashed TreeGUI after the change in Folder List format
+2.2.5.5 TreeGUI attempted to load default config files that did not exist
+2.2.5.4 IndividualIndexFileWordSeperator default changed from "." to "-"
+2.2.5.3 F.Music.index.html would now save as Music.F.index.html
+2.2.5.2 Indexing according to interval setting was only checked on Service start
+2.2.5.1 TreeGUI.Reader.log will now report time for next interval based indexing
+2.2.5.0 TreeGUI will now attempt to open index file from every possible location according to settings
+2.2.4.0 Change in config file format for Folder List (old tgc files will be automatically upgraded)
+2.2.3.3 Writing Event Log while logged on as Limited caused program crash
+2.2.3.2 Small bug while checking update in the background thread
+2.2.3.1 Could not open folders with names such as ==Downloads==
+2.2.3.0 Check Update is now performed in a background thread
+
+Version 2.2 BETA 1 (20060606)
+
+2.2.2.0 Add Server Info to the Folder Path in Status Bar [via TreeGUI.xml]
+2.2.1.0 Mouse-over on Folders in XHTML index files now show the Folder Path in Status Bar [via Config1.tgc]
+2.2.0.2 Win32Exception while writing Event Log under Limited User
+2.2.0.1 Possible UnauthorizedAccessException while creating archives
+2.2.0.0 Added Virtual Folder Support [via Config1.tgc]
+2.1.3.2 Apply button didn't function properly for Config Properties
+2.1.3.1 Changed Event Log name from McoreIndexer Log to TreeGUI Log
+2.1.3.0 Changed parentheses to square brackets for folder/file sizes
+
+Version 2.1 (20060209)
+
+2.1.02.0 Display Files and Show File Sizes features are now common with other index file types
+2.1.01.0 Added default_no_files.css by HotRod
+2.1.00.0 Option to not display files using Tree.NET engine
+2.0.31.2 Form Title showed Form1 during startup
+2.0.31.1 Creats a backup file before saving config file
+2.0.31.0 Indexed time is now displayed in UTC by default
+
+Version 2.0 (20051213)
+
+2.0.30.3 Index All function did not work for Limited User
+2.0.30.2 Fixed another Check if File is not Saved bug
+2.0.30.1 Added Bug Report facility if program crashses
+2.0.30.0 Automatically load a specified config file
+2.0.29.0 Hide file extension [via Config1.tgc]
+2.0.28.0 Automatically save config file [via TreeGUI.xml]
+2.0.27.0 Reverse File listing Order [via Config1.tgc]
+2.0.26.5 Fixed rare bug that could crash TreeGUI when Options are loaded under Limited User
+2.0.26.4 Minor changes in Event Log
+2.0.26.3 MIME type changed from text/html to application/xhtml+xml
+2.0.26.2 XHTML charset changed from iso-8859-1 to utf-8 to support Asian charactors
+2.0.26.1 Merged Site Index Title can now be modified via the TreeGUI.xml
+
+Version 2.0 BETA 2 (20051209)
+
+2.0.26.0 Filtering is now managable for each Configuration File
+2.0.25.3 Delimiter for filtering specific files is modifiable via Options.xml
+2.0.25.2 Delimiter for filtering specific files is changed from ; to |
+2.0.25.1 Fixed ProgressBar update bug when indexing all config files
+2.0.25.0 Filtering by extensions e.g. *.jpg
+2.0.24.1 Fixed Program Crash for Limited User if Task Folder Access is Denied
+2.0.24.0 Some core changes in how indexing engines are initialized
+2.0.23.0 Ability to create both Merged and Seperate index files
+2.0.22.3 Fixed bug in TreeLib that kept overwriting merged zipped file
+2.0.22.2 Background worker halted for FileNotFound error caused by TreeLib
+2.0.22.1 Changing indexing engine to Tree Walk Utility did not remove html file out
+2.0.22.0 Some core changes in how progress bar is updated
+2.0.21.4 Folders were not indexed until config properties were accessed when TreeGUI was first loaded
+2.0.21.3 Large file sizes will now be displayed in MiB instead of KiB
+2.0.21.2 Zip CheckBoxes are now enabled only if Zip Files is checked
+2.0.21.1 Double clicking Folder in the list will attempt to open .gz file if index file is not found
+
+Version 2.0 BETA 1 (20051206)
+
+2.0.20.0 Added Zip Operations for indexed files
+2.0.19.0 Feature to Backup/Restore Options File
+2.0.18.2 Fixed Options file write error while Service is started
+2.0.18.1 Fixed XML Serialization bug in File Save/Save As
+2.0.18.0 Options and Config files are now saved in XML
+2.0.17.0 Option to Show Folder Path instead of Folder Name
+2.0.16.2 Assembly Version now follow the internal versioning system
+2.0.16.1 Did not fix broken Windows Service path prior to enabled the Service
+2.0.16.0 Added Config dialog to seperate Global Options
+2.0.15.2 Reading options file was depending on indexing interval
+2.0.15.1 Did not index Root Drives when files filtering was enabled
+2.0.15.0 Logging Windows Service activity for debugging
+2.0.14.0 Ignore specific files while indxing (Tree.NET)
+2.0.13.0 Ignore Hidden and System files while indexing (Tree.NET)
+2.0.12.1 Root folder will now display size in gibibytes instead of mebibytes
+2.0.12.0 Import Cascading Style Sheets for .html files
+2.0.11.0 Generate Valid XHTML files using TreeNet (Experimental)
+2.0.10.0 Integrated Tree.NET Indexing Engine to show Folder/File Sizes
+2.0.09.0 Index this Folder feature is now Index Checked Folders
+2.0.08.1 Fixed several File Save/Save As bugs with Read-Only tgc files
+2.0.08.0 Scheduled Indexing specified by date and time
+2.0.07.0 TreeGUI is now fully compatible with Limited User Accounts
+2.0.06.0 Improved Check for Updates feature
+2.0.05.0 Implemented multithreaded indexing
+2.0.04.0 Added File New/Open/Save/Save As functionality
+2.0.03.1 Fixed application crash when default.tgc is deleted
+2.0.03.0 Added Undo/Redo capabalities for Adding/Removing Folders
+2.0.02.0 Added Options Dialog for global settings and config file settings
+2.0.01.0 Automatically import TreeGUI v1 Config files
+2.0.00.0 Redesigned TreeGUI for Microsoft .NET Framework Version 2.0
+
+Version 1.6 BETA 2 (20051114)
+
+1.6.4.3 Minor update to Event Log Next Scheduled Time Text
+1.6.4.2 Minor update to the Footer Text in Index Files
+
+Version 1.6 BETA 1 (20050918)
+
+1.6.4.1 Event Log will say TreeGUI instead of McoreIndexer
+1.6.4.0 Event Log Title will include the current Config File Name
+1.6.3.2 McoreIndexer sometimes used to index folders in short time intervals
+1.6.3.1 McoreIndexer used to index folders immediately after Windows started
+1.6.3.0 Double clicking folder in the list will open index file
+1.6.2.2 Version History and Release Notes forms can now be resized
+1.6.2.1 Swapped Index and Open this folder menu items to prevent accidental mouse clicks
+1.6.2.0 Dates and Times now follow the ISO 8601:2004 Standard
+1.6.1.1 Logged next run time in Event Viewer when there was no Schedule Tasks
+1.6.1.0 Next Schedule Run Time is given as DateTime instead of in minutes
+1.6.0.1 Next Run time was incorrectly logged for multiple .tgc files
+1.6.0.0 McoreIndexer will now index all the config files in Application Path
+
+Version 1.5 (20050731)
+
+1.5.8.0 Added support to index individual folders (Ctrl+G)
+1.5.7.2 Some minor GUI fixes
+
+Version 1.5 BETA 3 (20050723)
+
+1.5.7.1 TreeGUI Config Icon was not set properly
+1.5.7.0 Advanced Tab to Associate .tgc extension, Uninstall McoreIndexer etc.
+1.5.6.0 Administrating Windows Service can now be done in real time
+1.5.5.3 Shutting down Windows while TreeGUI was running caused a net.exe error
+1.5.5.2 Status Bar information about Current Profile moved to Application Title
+1.5.5.1 Logged next run time in Event Viewer when there was no Schedule Tasks
+1.5.5.0 Load with Windows options are only enabled if Default Profile is loaded
+1.5.4.0 Now uses the Folder Browser from Shell API for Output Directory
+1.5.3.6 Had to press Index Now twice to index for the first time (1.5 BETA 2)
+1.5.3.5 Fixed incorrect tag for indexed files using McoreIndexer (1.5 BETA 2)
+
+Version 1.5 BETA 2 (20050720)
+
+1.5.3.4 Didn't tag index files created in the same folder witout appending
+1.5.3.3 Added Release Notes to the Application
+1.5.3.2 Tray Icon Text will include current Config Name
+1.5.3.1 TreeGUI can now start/stop Windows Service without having to exit
+1.5.3.0 Save Configuration as Default to set which tgc to use by McoreIndexer
+1.5.2.0 TreeGUI is back to Multiple Instance to have multiple tgc files opened
+1.5.1.0 Windows Service or GUI will not index files as soon as Windows reboots
+1.5.0.3 Scheduled Tasks in GUI mode did not run (1.4 SR-2)
+1.5.0.2 Individual Index files in same out directory kept appending
+1.5.0.1 Windows Service was not loaded or unloaded when application was closed
+
+Version 1.5 BETA 1 (20050718)
+
+1.5.0.0 Added support for multiple TreeGUI configurations
+1.4.6.0 Config file extension changed from .config to .tgc
+1.4.5.0 Close to Tray
+
+Version 1.4 SR-2 (20050717T18)
+
+1.4.4.0 Add folders and its subfolders recursively
+1.4.3.0 Added support to Remove All Folders
+1.4.2.1 Added Context Menu to Add and Remove buttons
+1.4.2.0 Open Index File in the selected Folder
+1.4.1.0 Show selected folder in Windows Explorer
+1.4.0.5 Added Context Menu for the Folder List
+1.4.0.4 Output Style tab is now called Configuration
+1.4.0.3 Indexer tab is now called Folders
+
+Version 1.4 SR-1 (20050717T16)
+
+1.4.0.2 Application crashed trying to remove Tree Branches on Devices not Ready
+1.4.0.1 It was possible to add My Computer and cause Tree.com to crash
+
+Version 1.4 (20050716)
+
+1.4.0.0 Option to remove Tree Branches in Index files
+1.3.6.0 Automatically select Ascii charactors option for .rtf and .doc extensions
+
+Version 1.3 SR-1 - 2005/07/16
+
+1.3.5.0 Event Log will also include next scheduled run time
+1.3.4.3 Removed Version History tab from Main Form
+1.3.4.2 Single Index file was not overwritten prior to appending using McoreIndexer
+1.3.4.1 Check for Updates always said Up-to-date
+
+Version 1.3 (20050715T14)
+
+1.3.4.0 Added Support Forums and Contact Information
+1.3.3.0 Added Check for Updates and Version History
+1.3.2.1 Added Context Menu for the main Form
+1.3.2.0 Creates a backup Config file on load
+1.3.1.1 Fixed bug that caused TreeGUI only accessible via Alt+Tab
+
+Version 1.3 BETA 1 (20050715T10)
+
+1.3.01.0 Added more options to control Tray behavior
+1.3.00.0 Added Rearrange Folder List feature
+1.2.11.0 Let Operating System handle Windows Service start/stop operations
+1.2.10.0 Windows Service an Startup items can be simultaneously enabled
+1.2.09.1 No longer indexes on start unless Startup Item is checked
+1.2.09.0 TreeGUI is now Single Instance only
+1.2.08.1 Enabling Windows Service sometimes caused an error
+
+Version 1.2 BETA 6 (20050714T12)
+
+1.2.8.0 All the Windows Service operations are now handled internally
+1.2.7.6 McoreIndexer always started during System Reboot
+1.2.7.5 Minimized to Tray on a fresh install of the application
+1.2.7.4 Application or service was still using the registry during log off
+
+Version 1.2 BETA 5 (20050714T10)
+
+1.2.7.3 Did not Save settings before TreeGUI sent to Tray
+1.2.7.2 Scheduled indexing option moved to Schedule tab
+1.2.7.1 Application loaded with Windows also when Windows Service was chosen
+1.2.7.0 TreeGUI will start in Tray also when Windows Service is chosen
+1.2.6.1 Incorrectly determined McoreIndexer installation state
+
+Version 1.2 BETA 4 (20050714T04)
+
+1.2.6.0 Now uses the Folder Browser from Shell API for Add Folders
+1.2.5.3 Did not save settings when options were updated
+1.2.5.2 Re-added Windows Service after bug fixing
+1.2.5.1 Did not Save settings before starting McoreIndexer manually
+1.2.5.0 Display Last Gnerated time in the Index files
+
+Version 1.2 BETA 3 (20050713)
+
+1.2.4.1 Windows Service temporarily removed for bug fixing
+1.2.4.0 Simultaneously index to each folder and as a single file
+1.2.3.2 Some of the Indexing functions moved to TreeLib.dll
+1.2.3.1 McoreIndexer will no longer autostart when TreeGUI loads
+1.2.3.0 Embedded Version History to Application
+1.2.2.2 Indexed files when Load with WIndows was disabled
+1.2.2.1 Incorrect usage of Displayed Last Indexed Time
+1.2.2.0 Minimize to Tray if Stay in Tray is checked
+
+Version 1.2 BETA 2 (20050712T13)
+
+1.2.1.0 Display Last Indexed Time in Status Bar
+1.2.0.2 Value cannot be Null error when indexing to single file
+1.2.0.1 File Name options said GroupBox1 on start
+
+Version 1.2 BETA 1 (20050712T11)
+
+1.2.0.0 Load in tray to perform background indexing using TreeGUI
+1.1.0.1 Last added folder was not indexed under Windows Service
+1.1.0.0 Added Windows Service to perform background indexing
+1.0.4.1 Single Index file was not overwritten prior to appending in TreeGUI
+
+Version 1.0 BETA 2 (20050701)
+
+1.0.4.0 Append to a single index file
+1.0.3.0 Saves Folder list
+
+Version 1.0 BETA 1 (20050630)
+
+1.0.2.0 Add folders to index using Tree
+1.0.1.0 Can set output to a different folder
+1.0.0.0 Can change index file name

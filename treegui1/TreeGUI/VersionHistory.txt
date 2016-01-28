@@ -1,0 +1,160 @@
+Version 1.6 BETA 2 (20051114)
+
+1.6.4.3 Minor update to Event Log Next Scheduled Time Text
+1.6.4.2 Minor update to the Footer Text in Index Files
+
+Version 1.6 BETA 1 (20050918)
+
+1.6.4.1 Event Log will say TreeGUI instead of McoreIndexer
+1.6.4.0 Event Log Title will include the current Config File Name
+1.6.3.2 McoreIndexer sometimes used to index folders in short time intervals
+1.6.3.1 McoreIndexer used to index folders immediately after Windows started
+1.6.3.0 Double clicking folder in the list will open index file
+1.6.2.2 Version History and Release Notes forms can now be resized
+1.6.2.1 Swapped Index and Open this folder menu items to prevent accidental mouse clicks
+1.6.2.0 Dates and Times now follow the ISO 8601:2004 Standard
+1.6.1.1 Logged next run time in Event Viewer when there was no Schedule Tasks
+1.6.1.0 Next Schedule Run Time is given as DateTime instead of in minutes
+1.6.0.1 Next Run time was incorrectly logged for multiple .tgc files
+1.6.0.0 McoreIndexer will now index all the config files in Application Path
+
+Version 1.5 - 2005/07/31
+
+1.5.8.0 Added support to index individual folders (Ctrl+G)
+1.5.7.2 Some minor GUI fixes
+
+Version 1.5 BETA 3 - 2005/07/23
+
+1.5.7.1 TreeGUI Config Icon was not set properly
+1.5.7.0 Advanced Tab to Associate .tgc extension, Uninstall McoreIndexer etc.
+1.5.6.0 Administrating Windows Service can now be done in real time
+1.5.5.3 Shutting down Windows while TreeGUI was running caused a net.exe error
+1.5.5.2 Status Bar information about Current Profile moved to Application Title
+1.5.5.1 Logged next run time in Event Viewer when there was no Schedule Tasks
+1.5.5.0 Load with Windows options are only enabled if Default Profile is loaded
+1.5.4.0 Now uses the Folder Browser from Shell API for Output Directory
+1.5.3.6 Had to press Index Now twice to index for the first time (1.5 BETA 2)
+1.5.3.5 Fixed incorrect tag for indexed files using McoreIndexer (1.5 BETA 2)
+
+Version 1.5 BETA 2 - 2005/07/18
+
+1.5.3.4 Didn't tag index files created in the same folder witout appending
+1.5.3.3 Added Release Notes to the Application
+1.5.3.2 Tray Icon Text will include current Config Name
+1.5.3.1 TreeGUI can now start/stop Windows Service without having to exit
+1.5.3.0 Save Configuration as Default to set which tgc to use by McoreIndexer
+1.5.2.0 TreeGUI is back to Multiple Instance to have multiple tgc files opened
+1.5.1.0 Windows Service or GUI will not index files as soon as Windows reboots
+1.5.0.3 Scheduled Tasks in GUI mode did not run (1.4 SR-2)
+1.5.0.2 Individual Index files in same out directory kept appending
+1.5.0.1 Windows Service was not loaded or unloaded when application was closed
+
+Version 1.5 BETA 1 - 2005/07/18
+
+1.5.0.0 Added support for multiple TreeGUI configurations
+1.4.6.0 Config file extension changed from .config to .tgc
+1.4.5.0 Close to Tray
+
+Version 1.4 SR-2 - 2005/07/17
+
+1.4.4.0 Add folders and its subfolders recursively
+1.4.3.0 Added support to Remove All Folders
+1.4.2.1 Added Context Menu to Add and Remove buttons
+1.4.2.0 Open Index File in the selected Folder
+1.4.1.0 Show selected folder in Windows Explorer
+1.4.0.5 Added Context Menu for the Folder List
+1.4.0.4 Output Style tab is now called Configuration
+1.4.0.3 Indexer tab is now called Folders
+
+Version 1.4 SR-1 - 2005/07/17
+
+1.4.0.2 Application crashed trying to remove Tree Branches on Devices not Ready
+1.4.0.1 It was possible to add My Computer and cause Tree.com to crash
+
+Version 1.4 - 2005/07/16
+
+1.4.0.0 Option to remove Tree Branches in Index files
+1.3.6.0 Automatically select Ascii charactors option for .rtf and .doc extensions
+
+Version 1.3 SR-1 - 2005/07/16
+
+1.3.5.0 Event Log will also include next scheduled run time
+1.3.4.3 Removed Version History tab from Main Form
+1.3.4.2 Single Index file was not overwritten prior to appending using McoreIndexer
+1.3.4.1 Check for Updates always said Up-to-date
+
+Version 1.3 - 2005/07/15
+
+1.3.4.0 Added Support Forums and Contact Information
+1.3.3.0 Added Check for Updates and Version History
+1.3.2.1 Added Context Menu for the main Form 
+1.3.2.0 Creates a backup Config file on load
+1.3.1.1 Fixed bug that caused TreeGUI only accessible via Alt+Tab
+
+Version 1.3 BETA 1 - 2005/07/15
+
+1.3.01.0 Added more options to control Tray behavior
+1.3.00.0 Added Rearrange Folder List feature
+1.2.11.0 Let Operating System handle Windows Service start/stop operations
+1.2.10.0 Windows Service an Startup items can be simultaneously enabled
+1.2.09.1 No longer indexes on start unless Startup Item is checked
+1.2.09.0 TreeGUI is now Single Instance only
+1.2.08.1 Enabling Windows Service sometimes caused an error
+
+Version 1.2 BETA 6 - 2005/07/14
+
+1.2.8.0 All the Windows Service operations are now handled internally
+1.2.7.6 McoreIndexer always started during System Reboot
+1.2.7.5 Minimized to Tray on a fresh install of the application
+1.2.7.4 Application or service was still using the registry during log off
+
+Version 1.2 BETA 5 - 2005/07/14
+
+1.2.7.3 Did not Save settings before TreeGUI sent to Tray
+1.2.7.2 Scheduled indexing option moved to Schedule tab
+1.2.7.1 Application loaded with Windows also when Windows Service was chosen
+1.2.7.0 TreeGUI will start in Tray also when Windows Service is chosen
+1.2.6.1 Incorrectly determined McoreIndexer installation state
+
+Version 1.2 BETA 4 - 2005/07/14
+
+1.2.6.0 Now uses the Folder Browser from Shell API for Add Folders
+1.2.5.3 Did not save settings when options were updated
+1.2.5.2 Re-added Windows Service after bug fixing
+1.2.5.1 Did not Save settings before starting McoreIndexer manually
+1.2.5.0 Display Last Gnerated time in the Index files
+
+Version 1.2 BETA 3 - 2005/07/13
+
+1.2.4.1 Windows Service temporarily removed for bug fixing
+1.2.4.0 Simultaneously index to each folder and as a single file
+1.2.3.2 Some of the Indexing functions moved to TreeLib.dll
+1.2.3.1 McoreIndexer will no longer autostart when TreeGUI loads
+1.2.3.0 Embedded Version History to Application
+1.2.2.2 Indexed files when Load with WIndows was disabled
+1.2.2.1 Incorrect usage of Displayed Last Indexed Time
+1.2.2.0 Minimize to Tray if Stay in Tray is checked
+
+Version 1.2 BETA 2 - 2005/07/12
+
+1.2.1.0 Display Last Indexed Time in Status Bar
+1.2.0.2 Value cannot be Null error when indexing to single file
+1.2.0.1 File Name options said GroupBox1 on start
+
+Version 1.2 BETA 1 - 2005/07/12
+
+1.2.0.0 Load in tray to perform background indexing using TreeGUI
+1.1.0.1 Last added folder was not indexed under Windows Service
+1.1.0.0 Added Windows Service to perform background indexing
+1.0.4.1 Single Index file was not overwritten prior to appending in TreeGUI
+
+Version 1.0 BETA 2 - 2005/07/01
+
+1.0.4.0 Append to a single index file
+1.0.3.0 Saves Folder list  
+
+Version 1.0 BETA 1 - 2005/06/30
+
+1.0.2.0 Add folders to index using Tree
+1.0.1.0 Can set output to a different folder
+1.0.0.0 Can change index file name
