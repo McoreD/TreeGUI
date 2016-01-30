@@ -31,35 +31,6 @@ namespace TreeGUI
             UpdateWindowUI();
         }
 
-        private void UpdateWindowUI(string configName = Program.ConfigNewFileName)
-        {
-            Title = $"TreeGUI - {configName}";
-            miToolsConfig.Header = $"{configName} Properties...";
-        }
-
-        private void FileExitCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void FileExitCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void FileOpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (!IsConfigNotSaved())
-            {
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.Filter = Program.ConfigFileFilter;
-                if (dlg.ShowDialog() == true)
-                {
-                    LoadConfig(dlg.FileName);
-                }
-            }
-        }
-
         private void LoadConfig(string filePath)
         {
             if (Program.LoadConfig(filePath))
@@ -70,21 +41,10 @@ namespace TreeGUI
             }
         }
 
-        private void FileOpenCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void UpdateWindowUI(string configName = Program.ConfigNewFileName)
         {
-            e.CanExecute = true;
-        }
-
-        private void ToolsConfigProperties_Click(object sender, RoutedEventArgs e)
-        {
-            ConfigWindow window = new ConfigWindow();
-            window.ShowDialog();
-        }
-
-        private void ToolsSettings_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsWindow window = new SettingsWindow();
-            window.ShowDialog();
+            Title = $"TreeGUI - {configName}";
+            miToolsConfig.Header = $"{configName} Properties...";
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,6 +68,86 @@ namespace TreeGUI
             return false;
         }
 
+        #region File menu
+
+        private void FileNewCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void FileNewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!IsConfigNotSaved())
+            {
+                Program.LoadNewConfig();
+                listBoxFolders.Items.Clear();
+                UpdateWindowUI();
+            }
+        }
+
+        private void FileOpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!IsConfigNotSaved())
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = Program.ConfigFileFilter;
+                if (dlg.ShowDialog() == true)
+                {
+                    LoadConfig(dlg.FileName);
+                }
+            }
+        }
+
+        private void FileOpenCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void FileExitCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void FileSaveCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void FileSaveCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Program.SaveConfig();
+        }
+
+        private void FileSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            Program.SaveAsConfig();
+        }
+
+        private void FileExitCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        #endregion File menu
+
+        #region Tools menu
+
+        private void ToolsConfigProperties_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigWindow window = new ConfigWindow();
+            window.ShowDialog();
+        }
+
+        private void ToolsSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow window = new SettingsWindow();
+            window.ShowDialog();
+        }
+
+        #endregion Tools menu
+
+        #region Help menu
+
         private void HelpVersionHistory_Click(object sender, RoutedEventArgs e)
         {
         }
@@ -115,6 +155,10 @@ namespace TreeGUI
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        #endregion Help menu
+
+        #region Buttons
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -148,27 +192,7 @@ namespace TreeGUI
 
         private void btnIndex_Click(object sender, RoutedEventArgs e)
         {
-            Config config = Program.Config;
-            config.IndexerSettings.BinaryUnits = true;
-
-            config.Folders.ForEach(x =>
-            {
-                string index = Indexer.Index(x, config.IndexerSettings);
-                if (!string.IsNullOrEmpty(index))
-                {
-                    string dir = config.OutputMode == OutputMode.CustomDirectory ? config.OutputDirectory : x;
-                    string fileName = Helpers.GetValidFileName($"{x} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
-                    string filePath = Path.Combine(dir, fileName);
-
-                    if (Directory.Exists(dir))
-                    {
-                        using (StreamWriter sw = new StreamWriter(filePath))
-                        {
-                            sw.Write(index);
-                        }
-                    }
-                }
-            });
+            IndexerHelper.Index(Program.Config);
         }
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
@@ -179,34 +203,6 @@ namespace TreeGUI
         {
         }
 
-        private void FileSaveCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void FileSaveCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Program.SaveConfig();
-        }
-
-        private void FileSaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            Program.SaveAsConfig();
-        }
-
-        private void FileNewCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void FileNewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (!IsConfigNotSaved())
-            {
-                Program.LoadNewConfig();
-                listBoxFolders.Items.Clear();
-                UpdateWindowUI();
-            }
-        }
+        #endregion Buttons
     }
 }
