@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeGUI"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TreeGUI.MainWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="TreeGUI" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinWidth="600" MinHeight="400" Width="600" Height="500"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,59 +20,61 @@
     <Window.InputBindings>
         <KeyBinding Key="W" Modifiers="Ctrl" Command="ApplicationCommands.Close" />
     </Window.InputBindings>
-    <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="True">
-        <Menu IsMainMenu="True" DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New..."  Command="ApplicationCommands.New">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="File" />
-                    </MenuItem.Icon>
+    <md:DialogHost>
+        <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="True">
+            <Menu IsMainMenu="True" DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New"  Command="ApplicationCommands.New">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="File" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Open..."  Command="ApplicationCommands.Open">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="Folder" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="_Save" Command="ApplicationCommands.Save">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="ContentSave" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Save _As..." Click="FileSaveAs_Click">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="ContentSaveAll" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="E_xit" Command="ApplicationCommands.Close" InputGestureText="Ctrl+W">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="CloseBox" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Open..."  Command="ApplicationCommands.Open">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Folder" />
-                    </MenuItem.Icon>
+                <MenuItem Header="Fol_ders" />
+                <MenuItem Header="_Logs" />
+                <MenuItem Header="_Tools">
+                    <MenuItem Header="_Options..." Click="ToolsSettings_Click">
+                        <MenuItem.Icon>
+                            <md:PackIcon Kind="Settings" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="miToolsConfig" Header="_Config1 Properties..." Click="ToolsConfigProperties_Click" />
                 </MenuItem>
-                <Separator />
-                <MenuItem Header="_Save" Command="ApplicationCommands.Save">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ContentSave" />
-                    </MenuItem.Icon>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_Version History..." Click="HelpVersionHistory_Click" />
+                    <MenuItem Header="_About..." Click="HelpAbout_Click" />
                 </MenuItem>
-                <MenuItem Header="Save _As..." Click="FileSaveAs_Click">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ContentSaveAll" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="E_xit" Command="ApplicationCommands.Close" InputGestureText="Ctrl+W">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="CloseBox" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Fol_ders" />
-            <MenuItem Header="_Logs" />
-            <MenuItem Header="_Tools">
-                <MenuItem Header="_Options..." Click="ToolsSettings_Click">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Settings" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem x:Name="miToolsConfig" Header="_Config1 Properties..." Click="ToolsConfigProperties_Click" />
-            </MenuItem>
-            <MenuItem Header="_Help">
-                <MenuItem Header="_Version History..." Click="HelpVersionHistory_Click" />
-                <MenuItem Header="_About..." Click="HelpAbout_Click" />
-            </MenuItem>
-        </Menu>
-        <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
-            <Button x:Name="btnAdd" IsDefault="True" Content="_Add" Margin="10,0,0,0" Click="btnAdd_Click" />
-            <Button x:Name="btnRemove" Content="_Remove" Margin="10,0,0,0" Click="btnRemove_Click" />
-            <Button x:Name="btnMoveUp" Content="Move _up" Margin="10,0,0,0" Click="btnMoveUp_Click" />
-            <Button x:Name="btnMoveDown" Content="Move _down" Margin="10,0,0,0" Click="btnMoveDown_Click" />
-            <Button x:Name="btnIndex" Content="_Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
+            </Menu>
+            <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
+                <Button x:Name="btnAdd" IsDefault="True" Content="_Add" Margin="10,0,0,0" Click="btnAdd_Click" />
+                <Button x:Name="btnRemove" Content="_Remove" Margin="10,0,0,0" Click="btnRemove_Click" />
+                <Button x:Name="btnMoveUp" Content="Move _up" Margin="10,0,0,0" Click="btnMoveUp_Click" />
+                <Button x:Name="btnMoveDown" Content="Move _down" Margin="10,0,0,0" Click="btnMoveDown_Click" />
+                <Button x:Name="btnIndex" Content="_Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
+            </DockPanel>
+            <ListBox x:Name="lbFolders" Margin="10" />
         </DockPanel>
-        <ListBox x:Name="listBoxFolders" Margin="10" />
-    </DockPanel>
+    </md:DialogHost>
 </Window>

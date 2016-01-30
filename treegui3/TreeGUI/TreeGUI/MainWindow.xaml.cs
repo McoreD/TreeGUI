@@ -1,9 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using ShareX.HelpersLib;
 using ShareX.IndexerLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +31,7 @@ namespace TreeGUI
             InitializeComponent();
             Program.LoadProgramSettings();
 
-            String[] args = Environment.GetCommandLineArgs();
+            string[] args = Environment.GetCommandLineArgs();
 
             if (args.Length > 1)
             {
@@ -49,7 +51,7 @@ namespace TreeGUI
             if (Program.LoadConfig(filePath))
             {
                 Program.ConfigFilePath = filePath;
-                Program.Config.Folders.ForEach(x => listBoxFolders.Items.Add(x));
+                Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
                 UpdateWindowUI(Path.GetFileName(filePath));
             }
         }
@@ -60,22 +62,23 @@ namespace TreeGUI
             miToolsConfig.Header = $"{configName} Properties...";
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void Window_Closing(object sender, CancelEventArgs e)
         {
-            e.Cancel = IsConfigNotSaved();
+            e.Cancel = await IsConfigNotSaved();
 
             Program.SaveSettings();
         }
 
-        private bool IsConfigNotSaved()
+        private async Task<bool> IsConfigNotSaved()
         {
             if (Program.ConfigEdited)
             {
-                MessageBoxResult result = MessageBox.Show($"Do you want to save changes to {Program.ConfigFileName}?", "TreeGUI", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                CustomMessageBox messageBox = new CustomMessageBox($"Do you want to save changes to {Program.ConfigFileName}?", "Yes", "No");
+                string result = await DialogHost.Show(messageBox) as string;
+                if (result.Equals("1", StringComparison.InvariantCultureIgnoreCase))
+                {
                     return !Program.SaveConfig();
-                else
-                    return false;
+                }
             }
 
             return false;
@@ -88,19 +91,19 @@ namespace TreeGUI
             e.CanExecute = true;
         }
 
-        private void FileNewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private async void FileNewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!IsConfigNotSaved())
+            if (!await IsConfigNotSaved())
             {
                 Program.LoadNewConfig();
-                listBoxFolders.Items.Clear();
+                lbFolders.Items.Clear();
                 UpdateWindowUI();
             }
         }
 
-        private void FileOpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private async void FileOpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!IsConfigNotSaved())
+            if (!await IsConfigNotSaved())
             {
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.Filter = Program.ConfigFileFilter;
@@ -188,7 +191,7 @@ namespace TreeGUI
                 {
                     foreach (string filename in dlg.FileNames)
                     {
-                        listBoxFolders.Items.Add(filename);
+                        lbFolders.Items.Add(filename);
                         Program.Config.Folders.Add(filename);
                     }
 
@@ -199,18 +202,13 @@ namespace TreeGUI
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Program.ConfigEdited = listBoxFolders.SelectedItems.Count > 0;
+            Program.ConfigEdited = lbFolders.SelectedItems.Count > 0;
 
-            listBoxFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
+            lbFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
             {
                 Program.Config.Folders.Remove(x);
-                listBoxFolders.Items.Remove(x);
+                lbFolders.Items.Remove(x);
             });
-        }
-
-        private void btnIndex_Click(object sender, RoutedEventArgs e)
-        {
-            IndexerHelper.Index(Program.Config);
         }
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
@@ -219,6 +217,11 @@ namespace TreeGUI
 
         private void btnMoveDown_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void btnIndex_Click(object sender, RoutedEventArgs e)
+        {
+            IndexerHelper.Index(Program.Config);
         }
 
         #endregion Buttons
