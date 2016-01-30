@@ -23,7 +23,21 @@ namespace TreeGUI
         public ConfigWindow()
         {
             InitializeComponent();
-            propertyGrid.SelectedObject = Program.Config;
+            pgConfigSettings.SelectedObject = Program.Config;
+            pgIndexerSettings.SelectedObject = Program.Config.IndexerSettings;
+
+            pgConfigSettings.PropertyValueChanged += PropertyGridConfigSettings_PropertyValueChanged;
+            pgIndexerSettings.PropertyValueChanged += PgIndexerSettings_PropertyValueChanged;
+        }
+
+        private void PgIndexerSettings_PropertyValueChanged(object sender, Xceed.Wpf.Toolkit.PropertyGrid.PropertyValueChangedEventArgs e)
+        {
+            Program.ConfigEdited = true;
+        }
+
+        private void PropertyGridConfigSettings_PropertyValueChanged(object sender, Xceed.Wpf.Toolkit.PropertyGrid.PropertyValueChangedEventArgs e)
+        {
+            Program.ConfigEdited = true;
         }
     }
 }

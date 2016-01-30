@@ -8,8 +8,24 @@
         mc:Ignorable="d"
         Title="Config Window" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinHeight="400" MinWidth="400">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <xctk:PropertyGrid Grid.Column="0"
+                               x:Name="pgConfigSettings"
+                               ShowSummary="True"
+                               Filter=""
+                               IsCategorized="False"
+                               ShowAdvancedOptions="False"
+                               IsReadOnly="False"
+                               UpdateTextBoxSourceOnEnterKey="True"
+                               IsMiscCategoryLabelHidden="False"
+                               ShowPreview="False"
+                               SelectedObject="{Binding}">
+        </xctk:PropertyGrid>
         <xctk:PropertyGrid Grid.Column="1"
-                               x:Name="propertyGrid"
+                               x:Name="pgIndexerSettings"
                                ShowSummary="True"
                                Filter=""
                                IsCategorized="True"
