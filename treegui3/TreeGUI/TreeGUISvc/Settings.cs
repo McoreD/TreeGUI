@@ -13,6 +13,9 @@ namespace TreeGUI
         [Category("Indexer Service")]
         public int ProcessPriorityId { get; set; }
 
+        [Category("Indexer Service"), Description("Folder where TreeGUI config files can be saved for the Windows Service to access.")]
+        public string ConfigFolder { get; set; }
+
         [Category("UI")]
         public bool AlwaysOnTop { get; set; }
 
