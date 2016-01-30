@@ -23,9 +23,9 @@ namespace TreeGUI
             ServiceInstaller serviceInstaller = new ServiceInstaller();
 
             //# Service Account Information
-            serviceProcessInstaller.Account = ServiceAccount.NetworkService;
-            serviceProcessInstaller.Username = null;
-            serviceProcessInstaller.Password = null;
+            serviceProcessInstaller.Account = ServiceAccount.User;
+            serviceProcessInstaller.Username = $@".\{Environment.UserName}";
+            // serviceProcessInstaller.Password = null;
 
             //# Service Information
             serviceInstaller.DisplayName = "TreeGUI Windows Service";

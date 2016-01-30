@@ -55,7 +55,7 @@ namespace TreeGUI
                 Program.ConfigFilePath = filePath;
                 lbFolders.Items.Clear();
                 Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
-                UpdateWindowUI(Path.GetFileName(filePath));
+                UpdateWindowUI(filePath);
             }
         }
 
@@ -91,6 +91,8 @@ namespace TreeGUI
 
         private void UpdateWindowUI(string configName = Program.ConfigNewFileName)
         {
+            if (File.Exists(configName)) configName = Path.GetFileName(configName);
+
             Title = $"TreeGUI - {configName}";
             miToolsConfig.Header = $"{configName} Properties...";
             btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;

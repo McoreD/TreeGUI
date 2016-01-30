@@ -14,7 +14,7 @@ namespace TreeGUI
 {
     public partial class TreeGUISvc : ServiceBase
     {
-        private static Timer timerIndexer = new Timer() { Interval = 15 * 1000 };
+        private static Timer timerIndexer = new Timer() { Interval = 24 * 3600 * 1000 };
         private static Timer timerSettingsReader = new Timer() { Interval = 1 * 3600 * 1000 };
 
         public TreeGUISvc()
@@ -76,11 +76,13 @@ namespace TreeGUI
 
         protected override void OnPause()
         {
+            timerIndexer.Enabled = false;
             base.OnPause();
         }
 
         protected override void OnContinue()
         {
+            timerIndexer.Enabled = true;
             base.OnContinue();
         }
 
@@ -91,11 +93,6 @@ namespace TreeGUI
 
         protected override void OnCustomCommand(int command)
         {
-            //  A custom command can be sent to a service by using this method:
-            //#  int command = 128; //Some Arbitrary number between 128 & 256
-            //#  ServiceController sc = new ServiceController("NameOfService");
-            //#  sc.ExecuteCommand(command);
-
             base.OnCustomCommand(command);
         }
 
