@@ -49,7 +49,7 @@ namespace TreeGUI
             if (Program.LoadConfig(filePath))
             {
                 Program.ConfigFilePath = filePath;
-                Program.Config.Folders.ForEach(x => listBoxFolders.Items.Add(x));
+                Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
                 UpdateWindowUI(Path.GetFileName(filePath));
             }
         }
@@ -58,6 +58,13 @@ namespace TreeGUI
         {
             Title = $"TreeGUI - {configName}";
             miToolsConfig.Header = $"{configName} Properties...";
+            btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
+            miFolderOpenDir.IsEnabled = lbFolders.SelectedIndex > -1;
+            if (miFolderOpenDir.IsEnabled)
+            {
+                miFolderOpenDir.Header = $"Browse {Path.GetFileName(lbFolders.SelectedItem.ToString())}...";
+            }
+            miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.OutputDirectory);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -93,7 +100,7 @@ namespace TreeGUI
             if (!IsConfigNotSaved())
             {
                 Program.LoadNewConfig();
-                listBoxFolders.Items.Clear();
+                lbFolders.Items.Clear();
                 UpdateWindowUI();
             }
         }
@@ -143,6 +150,27 @@ namespace TreeGUI
 
         #endregion File menu
 
+        #region Folders menu
+
+        private void miFolderOpenDir_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbFolders.SelectedIndex > -1)
+            {
+                string dir = lbFolders.SelectedItem.ToString();
+                Helpers.OpenFolder(dir);
+            }
+        }
+
+        private void miFolderOpenOutputDir_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(Program.Config.OutputDirectory))
+            {
+                Helpers.OpenFolder(Program.Config.OutputDirectory);
+            }
+        }
+
+        #endregion Folders menu
+
         #region Tools menu
 
         private void ToolsConfigProperties_Click(object sender, RoutedEventArgs e)
@@ -188,7 +216,7 @@ namespace TreeGUI
                 {
                     foreach (string filename in dlg.FileNames)
                     {
-                        listBoxFolders.Items.Add(filename);
+                        lbFolders.Items.Add(filename);
                         Program.Config.Folders.Add(filename);
                     }
 
@@ -199,12 +227,12 @@ namespace TreeGUI
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Program.ConfigEdited = listBoxFolders.SelectedItems.Count > 0;
+            Program.ConfigEdited = lbFolders.SelectedItems.Count > 0;
 
-            listBoxFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
+            lbFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
             {
                 Program.Config.Folders.Remove(x);
-                listBoxFolders.Items.Remove(x);
+                lbFolders.Items.Remove(x);
             });
         }
 
@@ -222,5 +250,10 @@ namespace TreeGUI
         }
 
         #endregion Buttons
+
+        private void lbFolders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateWindowUI();
+        }
     }
 }

@@ -23,7 +23,7 @@
     <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="True">
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_New..."  Command="ApplicationCommands.New">
+                <MenuItem Header="_New"  Command="ApplicationCommands.New">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="File" />
                     </MenuItem.Icon>
@@ -51,7 +51,10 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Fol_ders" />
+            <MenuItem Header="Fol_ders">
+                <MenuItem x:Name="miFolderOpenDir" Header="Browse folder..." Click="miFolderOpenDir_Click" />
+                <MenuItem x:Name="miFolderOpenOutputDir" Header="Browse output folder..." Click="miFolderOpenOutputDir_Click" />
+            </MenuItem>
             <MenuItem Header="_Logs" />
             <MenuItem Header="_Tools">
                 <MenuItem Header="_Options..." Click="ToolsSettings_Click">
@@ -73,6 +76,6 @@
             <Button x:Name="btnMoveDown" Content="Move _down" Margin="10,0,0,0" Click="btnMoveDown_Click" />
             <Button x:Name="btnIndex" Content="_Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
         </DockPanel>
-        <ListBox x:Name="listBoxFolders" Margin="10" />
+        <ListBox x:Name="lbFolders" Margin="10" SelectionChanged="lbFolders_SelectionChanged" />
     </DockPanel>
 </Window>
