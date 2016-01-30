@@ -14,7 +14,7 @@ namespace TreeGUI
 {
     public partial class TreeGUISvc : ServiceBase
     {
-        private static Timer timerIndexer = new Timer() { Interval = 24 * 3600 * 1000 };
+        private static Timer timerIndexer = new Timer() { Interval = 15 * 1000 };
         private static Timer timerSettingsReader = new Timer() { Interval = 1 * 3600 * 1000 };
 
         public TreeGUISvc()
@@ -31,15 +31,22 @@ namespace TreeGUI
 
         protected override void OnStart(string[] args)
         {
+            EventLog.WriteEntry($"Reading settings from {Program.SettingsFilePath}");
+            Program.LoadSettings();
+
             timerIndexer.Elapsed += TimerIndexer_Elapsed;
+            timerIndexer.Start();
+
             timerSettingsReader.Elapsed += TimerSettingsReader_Elapsed;
+            timerSettingsReader.Start();
+
             base.OnStart(args);
         }
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
             EventLog.WriteEntry($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
-            Program.LoadProgramSettings();
+            Program.LoadSettings();
         }
 
         private void TimerIndexer_Elapsed(object sender, ElapsedEventArgs e)
@@ -49,8 +56,15 @@ namespace TreeGUI
                 var configFiles = Directory.GetFiles(Program.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);
                 configFiles.ToList<string>().ForEach(tgcjFile =>
                 {
-                    EventLog.WriteEntry($"Reading {tgcjFile}");
-                    IndexerHelper.Index(Config.Load(tgcjFile));
+                    try
+                    {
+                        EventLog.WriteEntry($"Reading {tgcjFile}");
+                        IndexerHelper.Index(Config.Load(tgcjFile));
+                    }
+                    catch (Exception ex)
+                    {
+                        EventLog.WriteEntry(ex.Message + "\n" + ex.StackTrace, EventLogEntryType.Error);
+                    }
                 });
             }
         }

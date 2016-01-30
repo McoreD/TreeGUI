@@ -20,15 +20,14 @@ namespace TreeGUI
                 string index = Indexer.Index(x, config.IndexerSettings);
                 if (!string.IsNullOrEmpty(index))
                 {
-                    string dir = config.OutputMode == OutputMode.CustomDirectory ? config.OutputDirectory : x;
+                    string dir = config.OutputMode == OutputMode.CustomDirectory ? config.CustomDirectory : x;
                     string fileName = Helpers.GetValidFileName($"{x} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
                     if (config.PrependDate)
                         fileName = $"{DateTime.Now.ToString("yyyy-MM-dd")} {fileName}";
 
-                    string filePath = Path.Combine(dir, fileName);
-
                     if (Directory.Exists(dir))
                     {
+                        string filePath = Path.Combine(dir, fileName);
                         using (StreamWriter sw = new StreamWriter(filePath))
                         {
                             sw.Write(index);

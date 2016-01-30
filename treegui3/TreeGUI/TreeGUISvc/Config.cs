@@ -21,7 +21,7 @@ namespace TreeGUI
         public OutputMode OutputMode { get; set; } = OutputMode.SameDirectory;
 
         [Description("Custom output directory for index files")]
-        public string OutputDirectory { get; set; }
+        public string CustomDirectory { get; set; }
 
         [Description("Index file name")]
         public string FileName { get; set; } = "Index";

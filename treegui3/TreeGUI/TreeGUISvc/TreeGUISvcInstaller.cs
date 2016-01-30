@@ -23,12 +23,13 @@ namespace TreeGUI
             ServiceInstaller serviceInstaller = new ServiceInstaller();
 
             //# Service Account Information
-            serviceProcessInstaller.Account = ServiceAccount.LocalSystem;
+            serviceProcessInstaller.Account = ServiceAccount.NetworkService;
             serviceProcessInstaller.Username = null;
             serviceProcessInstaller.Password = null;
 
             //# Service Information
             serviceInstaller.DisplayName = "TreeGUI Windows Service";
+            serviceInstaller.Description = "Directory indexer for file servers";
             serviceInstaller.StartType = ServiceStartMode.Automatic;
 
             //# This must be identical to the WindowsService.ServiceBase name

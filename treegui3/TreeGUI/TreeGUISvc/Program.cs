@@ -10,7 +10,7 @@ namespace TreeGUI
     public static class Program
     {
         public const string ConfigFileFilter = "TreeGUI config files (*.tgcj)|*.tgcj";
-        public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TreeGUI");
+        public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "TreeGUI");
 
         private static string CustomPersonalPath { get; set; }
         public static Settings Settings { get; private set; }
@@ -49,7 +49,7 @@ namespace TreeGUI
             }
         }
 
-        public static void LoadProgramSettings()
+        public static void LoadSettings()
         {
             Settings = Settings.Load(SettingsFilePath);
         }

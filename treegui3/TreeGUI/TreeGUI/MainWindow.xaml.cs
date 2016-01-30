@@ -31,7 +31,7 @@ namespace TreeGUI
         public MainWindow()
         {
             InitializeComponent();
-            Program.LoadProgramSettings();
+            Program.LoadSettings();
 
             string[] args = Environment.GetCommandLineArgs();
 
@@ -53,12 +53,13 @@ namespace TreeGUI
             if (Program.LoadConfig(filePath))
             {
                 Program.ConfigFilePath = filePath;
+                lbFolders.Items.Clear();
                 Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
                 UpdateWindowUI(Path.GetFileName(filePath));
             }
         }
 
-        public static bool SaveConfig()
+        public bool SaveConfig()
         {
             if (!File.Exists(Program.ConfigFilePath))
             {
@@ -72,7 +73,7 @@ namespace TreeGUI
             }
         }
 
-        public static bool SaveAsConfig()
+        public bool SaveAsConfig()
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = Program.ConfigFileFilter;
@@ -81,6 +82,7 @@ namespace TreeGUI
                 Program.ConfigFilePath = dlg.FileName;
                 Program.Config.SaveAsync(Program.ConfigFilePath);
                 Program.ConfigEdited = false;
+                UpdateWindowUI(Program.ConfigFilePath);
                 return true;
             }
 
@@ -97,7 +99,7 @@ namespace TreeGUI
             {
                 miFolderOpenDir.Header = $"Browse {Path.GetFileName(lbFolders.SelectedItem.ToString())}...";
             }
-            miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.OutputDirectory);
+            miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.CustomDirectory);
         }
 
         private async void Window_Closing(object sender, CancelEventArgs e)
@@ -197,9 +199,9 @@ namespace TreeGUI
 
         private void miFolderOpenOutputDir_Click(object sender, RoutedEventArgs e)
         {
-            if (Directory.Exists(Program.Config.OutputDirectory))
+            if (Directory.Exists(Program.Config.CustomDirectory))
             {
-                Helpers.OpenFolder(Program.Config.OutputDirectory);
+                Helpers.OpenFolder(Program.Config.CustomDirectory);
             }
         }
 
