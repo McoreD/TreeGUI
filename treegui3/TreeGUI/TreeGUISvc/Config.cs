@@ -25,5 +25,8 @@ namespace TreeGUI
 
         [Description("Index file name")]
         public string FileName { get; set; } = "Index";
+
+        [Description("Prepend date in ISO 8601 format to index file names")]
+        public bool PrependDate { get; set; } = true;
     }
 }
