@@ -8,11 +8,11 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreeGUISvc
+namespace TreeGUI
 {
-    public partial class Service1 : ServiceBase
+    public partial class TreeGUISvc : ServiceBase
     {
-        public Service1()
+        public TreeGUISvc()
         {
             InitializeComponent();
         }
