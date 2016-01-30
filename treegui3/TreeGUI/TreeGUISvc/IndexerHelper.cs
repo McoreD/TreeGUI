@@ -21,7 +21,10 @@ namespace TreeGUI
                 if (!string.IsNullOrEmpty(index))
                 {
                     string dir = config.OutputMode == OutputMode.CustomDirectory ? config.OutputDirectory : x;
-                    string fileName = Helpers.GetValidFileName($"{x} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}");
+                    string fileName = Helpers.GetValidFileName($"{x} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
+                    if (config.PrependDate)
+                        fileName = $"{DateTime.Now.ToString("yyyy-MM-dd")} {fileName}";
+
                     string filePath = Path.Combine(dir, fileName);
 
                     if (Directory.Exists(dir))
