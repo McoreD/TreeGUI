@@ -28,7 +28,20 @@ namespace TreeGUI
         {
             InitializeComponent();
             Program.LoadProgramSettings();
-            UpdateWindowUI();
+
+            String[] args = Environment.GetCommandLineArgs();
+
+            if (args.Length > 1)
+            {
+                if (args[1].EndsWith(".tgcj"))
+                {
+                    LoadConfig(args[1]);
+                }
+            }
+            else
+            {
+                UpdateWindowUI();
+            }
         }
 
         private void LoadConfig(string filePath)

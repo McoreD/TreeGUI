@@ -12,7 +12,7 @@ namespace TreeGUI
 {
     public static class Program
     {
-        public const string ConfigFileFilter = "TreeGUI config files (*.tgc)|*.tgc";
+        public const string ConfigFileFilter = "TreeGUI config files (*.tgcj)|*.tgcj";
         public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TreeGUI");
 
         private static string CustomPersonalPath { get; set; }
