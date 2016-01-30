@@ -177,16 +177,21 @@ namespace TreeGUI
         {
             if (CommonFileDialog.IsPlatformSupported)
             {
-                var dlg = new CommonOpenFileDialog();
+                CommonOpenFileDialog dlg = new CommonOpenFileDialog();
                 dlg.EnsureReadOnly = true;
                 dlg.IsFolderPicker = true;
                 dlg.AllowNonFileSystemItems = false;
-                dlg.Multiselect = false;
+                dlg.Multiselect = true;
                 dlg.Title = "Select folder to index";
+
                 if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    listBoxFolders.Items.Add(dlg.FileName);
-                    Program.Config.Folders.Add(dlg.FileName);
+                    foreach (string filename in dlg.FileNames)
+                    {
+                        listBoxFolders.Items.Add(filename);
+                        Program.Config.Folders.Add(filename);
+                    }
+
                     Program.ConfigEdited = true;
                 }
             }
@@ -196,7 +201,7 @@ namespace TreeGUI
         {
             Program.ConfigEdited = listBoxFolders.SelectedItems.Count > 0;
 
-            listBoxFolders.SelectedItems.Cast<string>().ToList<string>().ForEach(x =>
+            listBoxFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
             {
                 Program.Config.Folders.Remove(x);
                 listBoxFolders.Items.Remove(x);
