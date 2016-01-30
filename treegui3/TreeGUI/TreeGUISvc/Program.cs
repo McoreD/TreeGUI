@@ -1,15 +1,9 @@
-﻿using Microsoft.Win32;
-using ShareX.HelpersLib;
+﻿using ShareX.HelpersLib;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Configuration.Install;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TreeGUI
 {
@@ -76,35 +70,6 @@ namespace TreeGUI
             if (Settings != null) Settings.Save(SettingsFilePath);
         }
 
-        public static bool SaveConfig()
-        {
-            if (!File.Exists(ConfigFilePath))
-            {
-                return SaveAsConfig();
-            }
-            else
-            {
-                ConfigEdited = false;
-                Config.SaveAsync(ConfigFilePath);
-                return true;
-            }
-        }
-
-        public static bool SaveAsConfig()
-        {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = ConfigFileFilter;
-            if (dlg.ShowDialog() == true)
-            {
-                ConfigFilePath = dlg.FileName;
-                Config.SaveAsync(ConfigFilePath);
-                ConfigEdited = false;
-                return true;
-            }
-
-            return false;
-        }
-
         public static void LoadNewConfig()
         {
             ConfigFilePath = "";
@@ -137,6 +102,12 @@ namespace TreeGUI
                     case "-uninstall":
                         StopService();
                         UninstallService();
+                        break;
+                    case "-start":
+                        StartService();
+                        break;
+                    case "-stop":
+                        StopService();
                         break;
                 }
             }
@@ -229,7 +200,7 @@ namespace TreeGUI
             }
         }
 
-        private static void StartService()
+        public static void StartService()
         {
             if (!IsInstalled()) return;
 
@@ -240,8 +211,7 @@ namespace TreeGUI
                     if (controller.Status != ServiceControllerStatus.Running)
                     {
                         controller.Start();
-                        controller.WaitForStatus(ServiceControllerStatus.Running,
-                            TimeSpan.FromSeconds(10));
+                        controller.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(10));
                     }
                 }
                 catch
@@ -251,7 +221,7 @@ namespace TreeGUI
             }
         }
 
-        private static void StopService()
+        public static void StopService()
         {
             if (!IsInstalled()) return;
 

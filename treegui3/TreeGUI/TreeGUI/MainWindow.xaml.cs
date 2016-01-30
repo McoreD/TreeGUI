@@ -6,8 +6,10 @@ using ShareX.IndexerLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -56,6 +58,35 @@ namespace TreeGUI
             }
         }
 
+        public static bool SaveConfig()
+        {
+            if (!File.Exists(Program.ConfigFilePath))
+            {
+                return SaveAsConfig();
+            }
+            else
+            {
+                Program.ConfigEdited = false;
+                Program.Config.SaveAsync(Program.ConfigFilePath);
+                return true;
+            }
+        }
+
+        public static bool SaveAsConfig()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = Program.ConfigFileFilter;
+            if (dlg.ShowDialog() == true)
+            {
+                Program.ConfigFilePath = dlg.FileName;
+                Program.Config.SaveAsync(Program.ConfigFilePath);
+                Program.ConfigEdited = false;
+                return true;
+            }
+
+            return false;
+        }
+
         private void UpdateWindowUI(string configName = Program.ConfigNewFileName)
         {
             Title = $"TreeGUI - {configName}";
@@ -84,7 +115,7 @@ namespace TreeGUI
                 string result = await DialogHost.Show(messageBox) as string;
                 if (result.Equals("1", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return !Program.SaveConfig();
+                    return !SaveConfig();
                 }
             }
 
@@ -138,12 +169,12 @@ namespace TreeGUI
 
         private void FileSaveCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Program.SaveConfig();
+            SaveConfig();
         }
 
         private void FileSaveAs_Click(object sender, RoutedEventArgs e)
         {
-            Program.SaveAsConfig();
+            SaveAsConfig();
         }
 
         private void FileExitCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -187,6 +218,46 @@ namespace TreeGUI
             SettingsWindow window = new SettingsWindow();
             window.ShowDialog();
         }
+
+        #region Windows Service
+
+        private void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = "-install";
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
+        private void miToolsSvcUninstall_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = "-uninstall";
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
+        private void miToolsSvcStart_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = "-start";
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
+        private void miToolsSvcStop_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = "-stop";
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
+        #endregion Windows Service
 
         #endregion Tools menu
 

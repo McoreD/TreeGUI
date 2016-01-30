@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            ServiceName = "TreeGUISvc";
+            // 
+            // TreeGUISvc
+            // 
+            this.ServiceName = "TreeGUISvc";
+
         }
 
         #endregion
