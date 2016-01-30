@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeGUI"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TreeGUI.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="TreeGUI" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinWidth="600" MinHeight="400" Width="600" Height="500"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="FileNewCommandBinding_Executed" CanExecute="FileNewCommandBinding_CanExecute" />
         <CommandBinding Command="ApplicationCommands.Open" Executed="FileOpenCommandBinding_Executed" CanExecute="FileOpenCommandBinding_CanExecute" />
@@ -25,29 +25,29 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New..."  Command="ApplicationCommands.New">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="File" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Open..."  Command="ApplicationCommands.Open">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M12,10L8,14H11V20H13V14H16M19,4H5C3.89,4 3,4.9 3,6V18A2,2 0 0,0 5,20H9V18H5V8H19V18H15V20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="Folder" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="_Save" Command="ApplicationCommands.Save">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="ContentSave" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Save _As..." Click="FileSaveAs_Click">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="ContentSaveAll" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="E_xit" Command="ApplicationCommands.Close" InputGestureText="Ctrl+W">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M15,24H17V22H15M16.56,4.44L15.11,5.89C16.84,6.94 18,8.83 18,11A6,6 0 0,1 12,17A6,6 0 0,1 6,11C6,8.83 7.16,6.94 8.88,5.88L7.44,4.44C5.36,5.88 4,8.28 4,11A8,8 0 0,0 12,19A8,8 0 0,0 20,11C20,8.28 18.64,5.88 16.56,4.44M13,2H11V12H13M11,24H13V22H11M7,24H9V22H7V24Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="CloseBox" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -56,7 +56,7 @@
             <MenuItem Header="_Tools">
                 <MenuItem Header="_Options..." Click="ToolsSettings_Click">
                     <MenuItem.Icon>
-                        <Path Stretch="UniformToFill" Width="16" Height="16" Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="#FF2196F3" />
+                        <materialDesign:PackIcon Kind="Settings" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem x:Name="miToolsConfig" Header="_Config1 Properties..." Click="ToolsConfigProperties_Click" />
@@ -66,14 +66,13 @@
                 <MenuItem Header="_About..." Click="HelpAbout_Click" />
             </MenuItem>
         </Menu>
-        <StatusBar x:Name="sBarApp" DockPanel.Dock="Bottom" Height="20"></StatusBar>
-        <WrapPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
-            <Button x:Name="btnAdd" IsDefault="True" Content="_Add" Width="Auto" Margin="10,0" Click="btnAdd_Click" />
-            <Button x:Name="btnRemove" Content="_Remove" Width="Auto" Margin="0,0,10,0" Click="btnRemove_Click" />
-            <Button x:Name="btnIndex" Content="_Index" Width="Auto" Margin="0,0,10,0" Click="btnIndex_Click" />
-            <Button x:Name="btnMoveUp" Content="Move _Up" Width="Auto" Margin="50,0,0,0" Click="btnMoveUp_Click" />
-            <Button x:Name="btnMoveDown" Content="Move _Down" Width="Auto" Margin="10,0,0,0" Click="btnMoveDown_Click" />
-        </WrapPanel>
+        <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
+            <Button x:Name="btnAdd" IsDefault="True" Content="_Add" Margin="10,0,0,0" Click="btnAdd_Click" />
+            <Button x:Name="btnRemove" Content="_Remove" Margin="10,0,0,0" Click="btnRemove_Click" />
+            <Button x:Name="btnMoveUp" Content="Move _up" Margin="10,0,0,0" Click="btnMoveUp_Click" />
+            <Button x:Name="btnMoveDown" Content="Move _down" Margin="10,0,0,0" Click="btnMoveDown_Click" />
+            <Button x:Name="btnIndex" Content="_Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
+        </DockPanel>
         <ListBox x:Name="listBoxFolders" Margin="10" />
     </DockPanel>
 </Window>
