@@ -148,14 +148,17 @@ namespace TreeGUI
 
         private void btnIndex_Click(object sender, RoutedEventArgs e)
         {
-            Program.Config.Folders.ForEach(x =>
+            Config config = Program.Config;
+            config.IndexerSettings.BinaryUnits = true;
+
+            config.Folders.ForEach(x =>
             {
-                string index = Indexer.Index(x, Program.Config.IndexerSettings);
+                string index = Indexer.Index(x, config.IndexerSettings);
                 if (!string.IsNullOrEmpty(index))
                 {
-                    string dir = Program.Config.OutputMode == OutputMode.CustomDirectory ? Program.Config.OutputDirectory : x;
-                    string fileName = Helpers.GetValidFileName($"{x} {Program.Config.FileName}.{Program.Config.IndexerSettings.Output.ToString().ToLower()}", " ");
-                    string filePath = Helpers.GetUniqueFilePath(Path.Combine(dir, fileName));
+                    string dir = config.OutputMode == OutputMode.CustomDirectory ? config.OutputDirectory : x;
+                    string fileName = Helpers.GetValidFileName($"{x} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
+                    string filePath = Path.Combine(dir, fileName);
 
                     if (Directory.Exists(dir))
                     {
