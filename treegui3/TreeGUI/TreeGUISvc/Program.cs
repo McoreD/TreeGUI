@@ -91,11 +91,13 @@ namespace TreeGUI
                 };
                 ServiceBase.Run(ServicesToRun);
             }
-            else if (args.Length == 1)
+            else
             {
                 switch (args[0])
                 {
                     case "-install":
+                        TreeGUISvc.UserName = args[1];
+                        TreeGUISvc.Password = args[2];
                         InstallService();
                         StartService();
                         break;

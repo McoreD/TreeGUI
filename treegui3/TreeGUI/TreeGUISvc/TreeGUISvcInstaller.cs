@@ -24,8 +24,8 @@ namespace TreeGUI
 
             //# Service Account Information
             serviceProcessInstaller.Account = ServiceAccount.User;
-            serviceProcessInstaller.Username = $@".\{Environment.UserName}";
-            // serviceProcessInstaller.Password = null;
+            serviceProcessInstaller.Username = TreeGUISvc.UserName;
+            serviceProcessInstaller.Password = TreeGUISvc.Password;
 
             //# Service Information
             serviceInstaller.DisplayName = "TreeGUI Windows Service";

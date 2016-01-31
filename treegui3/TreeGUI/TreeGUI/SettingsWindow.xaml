@@ -1,6 +1,7 @@
-﻿<Window x:Class="TreeGUI.SettingsWindow"
+﻿<Controls:MetroWindow x:Class="TreeGUI.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,4 +12,4 @@
         <xctk:PropertyGrid x:Name="propertyGrid" Filter="" IsCategorized="True" ShowAdvancedOptions="False" IsReadOnly="False" UpdateTextBoxSourceOnEnterKey="True"
                            IsMiscCategoryLabelHidden="False" ShowPreview="False" SelectedObject="{Binding}" ShowTitle="False" />
     </DockPanel>
-</Window>
+</Controls:MetroWindow>

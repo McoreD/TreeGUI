@@ -17,6 +17,9 @@ namespace TreeGUI
         private static Timer timerIndexer = new Timer() { Interval = 24 * 3600 * 1000 };
         private static Timer timerSettingsReader = new Timer() { Interval = 1 * 3600 * 1000 };
 
+        internal static string UserName { get; set; }
+        internal static string Password { get; set; }
+
         public TreeGUISvc()
         {
             InitializeComponent();

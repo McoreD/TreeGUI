@@ -1,32 +1,26 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using ShareX.HelpersLib;
-using ShareX.IndexerLib;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace TreeGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -225,13 +219,17 @@ namespace TreeGUI
 
         #region Windows Service
 
-        private void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
+        private async void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-            psi.Arguments = "-install";
-            psi.Verb = "runas";
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            LoginDialogData result = await GetLoginCredentials();
+            if (!string.IsNullOrEmpty(result.Username))
+            {
+                ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+                psi.Arguments = $"-install {result.Username} {result.Password}";
+                psi.Verb = "runas";
+                psi.UseShellExecute = true;
+                Process.Start(psi);
+            }
         }
 
         private void miToolsSvcUninstall_Click(object sender, RoutedEventArgs e)
@@ -241,6 +239,12 @@ namespace TreeGUI
             psi.Verb = "runas";
             psi.UseShellExecute = true;
             Process.Start(psi);
+        }
+
+        private async Task<LoginDialogData> GetLoginCredentials()
+        {
+            LoginDialogSettings settings = new LoginDialogSettings() { InitialUsername = $@".\{Environment.UserName}" };
+            return await this.ShowLoginAsync("TreeGUI", "Please enter your password to start the Windows Service using your credentials.", settings);
         }
 
         private void miToolsSvcStart_Click(object sender, RoutedEventArgs e)

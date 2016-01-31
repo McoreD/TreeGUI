@@ -1,4 +1,5 @@
-﻿using ShareX.IndexerLib;
+﻿using MahApps.Metro.Controls;
+using ShareX.IndexerLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace TreeGUI
     /// <summary>
     /// Interaction logic for ConfigWindow.xaml
     /// </summary>
-    public partial class ConfigWindow : Window
+    public partial class ConfigWindow : MetroWindow
     {
         public ConfigWindow()
         {
