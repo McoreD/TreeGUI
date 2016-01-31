@@ -11,20 +11,15 @@ namespace TreeGUI
     public class Settings : SettingsBase<Settings>
     {
         [Category("Indexer Service")]
-        public int ProcessPriorityId { get; set; }
+        public int LoadSettingsHz { get; set; } = 2;
+
+        [Category("Indexer Service")]
+        public int IndexsHz { get; set; } = 24;
 
         [Category("Indexer Service"), Description("Folder where TreeGUI config files can be saved for the Windows Service to access.")]
         public string ConfigFolder { get; set; }
 
-        [Category("UI")]
+        [Category("App")]
         public bool AlwaysOnTop { get; set; }
-
-        [Category("UI")]
-        public bool MinimizeToTray { get; set; }
-
-        public Settings()
-        {
-            this.ApplyDefaultPropertyValues();
-        }
     }
 }

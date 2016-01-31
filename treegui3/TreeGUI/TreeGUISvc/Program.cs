@@ -13,6 +13,7 @@ namespace TreeGUI
         public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "TreeGUI");
 
         private static string CustomPersonalPath { get; set; }
+
         public static Settings Settings { get; private set; }
         public static Config Config { get; private set; } = new Config();
 

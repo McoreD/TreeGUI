@@ -15,8 +15,8 @@ namespace TreeGUI
 {
     public partial class TreeGUISvc : ServiceBase
     {
-        private static Timer timerIndexer = new Timer() { Interval = 24 * 3600 * 1000 };
-        private static Timer timerSettingsReader = new Timer() { Interval = 1 * 3600 * 1000 };
+        private static Timer timerIndexer = new Timer();
+        private static Timer timerSettingsReader = new Timer();
 
         internal static string UserName { get; set; }
         internal static string Password { get; set; }
@@ -39,6 +39,7 @@ namespace TreeGUI
             WriteLog($"Reading settings from {Program.SettingsFilePath}");
 
             Program.LoadSettings();
+            UpdateTimers();
 
             timerIndexer.Elapsed += TimerIndexer_Elapsed;
             timerIndexer.Start();
@@ -49,10 +50,17 @@ namespace TreeGUI
             base.OnStart(args);
         }
 
+        private void UpdateTimers()
+        {
+            timerIndexer.Interval = Program.Settings.LoadSettingsHz * 3600 * 1000;
+            timerIndexer.Interval = Program.Settings.IndexsHz * 3600 * 1000;
+        }
+
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
             WriteLog($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
             Program.LoadSettings();
+            UpdateTimers();
         }
 
         private void TimerIndexer_Elapsed(object sender, ElapsedEventArgs e)

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit.PropertyGrid;
 
 namespace TreeGUI
 {
@@ -23,6 +24,11 @@ namespace TreeGUI
         {
             InitializeComponent();
             propertyGrid.SelectedObject = Program.Settings;
+        }
+
+        private void propertyGrid_PropertyValueChanged(object sender, PropertyValueChangedEventArgs e)
+        {
+            Program.Settings.OnSettingsChanged(e);
         }
     }
 }

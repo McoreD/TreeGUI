@@ -28,6 +28,8 @@ namespace TreeGUI
             DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
+            Program.Settings.SettingsChanged += MainWindow_SettingsChanged;
+            Program.Config.SettingsSaved += Config_SettingsSaved;
 
             string[] args = Environment.GetCommandLineArgs();
 
@@ -44,6 +46,16 @@ namespace TreeGUI
             }
         }
 
+        private void Config_SettingsSaved(object sender, EventArgs e)
+        {
+            Program.ConfigEdited = false;
+        }
+
+        private void MainWindow_SettingsChanged(object sender, EventArgs e)
+        {
+            this.Topmost = Program.Settings.AlwaysOnTop;
+        }
+
         private void LoadConfig(string filePath)
         {
             if (Program.LoadConfig(filePath))
@@ -57,13 +69,14 @@ namespace TreeGUI
 
         public bool SaveConfig()
         {
+            if (!Program.ConfigEdited) return false;
+
             if (!File.Exists(Program.ConfigFilePath))
             {
                 return SaveAsConfig();
             }
             else
             {
-                Program.ConfigEdited = false;
                 Program.Config.SaveAsync(Program.ConfigFilePath);
                 return true;
             }
@@ -77,7 +90,6 @@ namespace TreeGUI
             {
                 Program.ConfigFilePath = dlg.FileName;
                 Program.Config.SaveAsync(Program.ConfigFilePath);
-                Program.ConfigEdited = false;
                 UpdateWindowUI();
                 return true;
             }
@@ -92,6 +104,7 @@ namespace TreeGUI
             Title = $"TreeGUI - {configName}";
             miToolsConfig.Header = $"{configName} Properties...";
             btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
+            btnIndex.IsEnabled = lbFolders.Items.Count > 0;
             miFolderOpenDir.IsEnabled = lbFolders.SelectedIndex > -1;
             if (miFolderOpenDir.IsEnabled)
             {
@@ -99,8 +112,6 @@ namespace TreeGUI
             }
             miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.CustomDirectory);
         }
-
-        #endregion Methods
 
         private async Task<bool> IsConfigNotSaved()
         {
@@ -117,10 +128,12 @@ namespace TreeGUI
             return false;
         }
 
+        #endregion Methods
+
         private async void Window_Closing(object sender, CancelEventArgs e)
         {
-            e.Cancel = await IsConfigNotSaved();
-
+            // e.Cancel = await IsConfigNotSaved();
+            SaveConfig();
             Program.SaveSettings();
         }
 
@@ -226,27 +239,34 @@ namespace TreeGUI
         private void ToolsConfigProperties_Click(object sender, RoutedEventArgs e)
         {
             ConfigWindow window = new ConfigWindow();
-            window.ShowDialog();
+            window.Show();
         }
 
         private void ToolsSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow window = new SettingsWindow();
-            window.ShowDialog();
+            window.Show();
         }
 
         #region Windows Service
 
         private async void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
         {
-            LoginBoxData result = await GetLoginCredentials();
+            LoginBoxData result = await ShowLoginAsync("Please enter your password to start the Windows Service using your credentials.");
             if (result != null)
             {
-                ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-                psi.Arguments = $"-install {result.UserName} {result.Password}";
-                psi.Verb = "runas";
-                psi.UseShellExecute = true;
-                Process.Start(psi);
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+                    psi.Arguments = $"-install {result.UserName} {result.Password}";
+                    psi.Verb = "runas";
+                    psi.UseShellExecute = true;
+                    Process.Start(psi);
+                }
+                catch (Exception ex)
+                {
+                    DebugHelper.WriteException(ex);
+                }
             }
         }
 
@@ -257,11 +277,6 @@ namespace TreeGUI
             psi.Verb = "runas";
             psi.UseShellExecute = true;
             Process.Start(psi);
-        }
-
-        private async Task<LoginBoxData> GetLoginCredentials()
-        {
-            return await ShowLoginAsync("Please enter your password to start the Windows Service using your credentials.");
         }
 
         private async Task<LoginBoxData> ShowLoginAsync(string question)
