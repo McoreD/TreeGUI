@@ -1,6 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using ShareX.HelpersLib;
@@ -20,7 +18,7 @@ namespace TreeGUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -221,11 +219,11 @@ namespace TreeGUI
 
         private async void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
         {
-            LoginDialogData result = await GetLoginCredentials();
-            if (!string.IsNullOrEmpty(result.Username))
+            LoginBoxData result = await GetLoginCredentials();
+            if (result != null)
             {
                 ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-                psi.Arguments = $"-install {result.Username} {result.Password}";
+                psi.Arguments = $"-install {result.UserName} {result.Password}";
                 psi.Verb = "runas";
                 psi.UseShellExecute = true;
                 Process.Start(psi);
@@ -241,10 +239,21 @@ namespace TreeGUI
             Process.Start(psi);
         }
 
-        private async Task<LoginDialogData> GetLoginCredentials()
+        private async Task<LoginBoxData> GetLoginCredentials()
         {
-            LoginDialogSettings settings = new LoginDialogSettings() { InitialUsername = $@".\{Environment.UserName}" };
-            return await this.ShowLoginAsync("TreeGUI", "Please enter your password to start the Windows Service using your credentials.", settings);
+            return await ShowLoginAsync("Please enter your password to start the Windows Service using your credentials.");
+        }
+
+        private async Task<LoginBoxData> ShowLoginAsync(string question)
+        {
+            LoginBox dlg = new LoginBox(question);
+
+            string result = await DialogHost.Show(dlg) as string;
+            if (result.Equals("2", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return dlg.Settings;
+            }
+            return null;
         }
 
         private void miToolsSvcStart_Click(object sender, RoutedEventArgs e)
