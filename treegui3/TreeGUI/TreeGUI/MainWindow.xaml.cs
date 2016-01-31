@@ -302,10 +302,13 @@ namespace TreeGUI
 
         private void HelpVersionHistory_Click(object sender, RoutedEventArgs e)
         {
+            URLHelpers.OpenURL("https://raw.githubusercontent.com/McoreD/TreeGUI/master/treegui3/VersionHistory.txt");
         }
 
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
+            AboutWindow dlg = new AboutWindow();
+            dlg.ShowDialog();
         }
 
         #endregion Help menu
