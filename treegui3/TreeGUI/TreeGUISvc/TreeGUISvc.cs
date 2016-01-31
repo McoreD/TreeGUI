@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShareX.HelpersLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,7 @@ namespace TreeGUI
         {
             InitializeComponent();
             this.EventLog.Log = "Application";
+            DebugHelper.Init(Program.LogsSvcFilePath);
 
             this.CanHandlePowerEvent = true;
             this.CanHandleSessionChangeEvent = true;
@@ -34,7 +36,8 @@ namespace TreeGUI
 
         protected override void OnStart(string[] args)
         {
-            EventLog.WriteEntry($"Reading settings from {Program.SettingsFilePath}");
+            WriteLog($"Reading settings from {Program.SettingsFilePath}");
+
             Program.LoadSettings();
 
             timerIndexer.Elapsed += TimerIndexer_Elapsed;
@@ -48,7 +51,7 @@ namespace TreeGUI
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
-            EventLog.WriteEntry($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
+            WriteLog($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
             Program.LoadSettings();
         }
 
@@ -61,12 +64,12 @@ namespace TreeGUI
                 {
                     try
                     {
-                        EventLog.WriteEntry($"Reading {tgcjFile}");
+                        WriteLog($"Reading {tgcjFile}");
                         IndexerHelper.Index(Config.Load(tgcjFile));
                     }
                     catch (Exception ex)
                     {
-                        EventLog.WriteEntry(ex.Message + "\n" + ex.StackTrace, EventLogEntryType.Error);
+                        WriteLog("Indexing", ex);
                     }
                 });
             }
@@ -107,6 +110,20 @@ namespace TreeGUI
         protected override void OnSessionChange(SessionChangeDescription changeDescription)
         {
             base.OnSessionChange(changeDescription);
+        }
+
+        private void WriteLog(string msg, Exception ex = null)
+        {
+            if (ex == null)
+            {
+                DebugHelper.WriteLine(msg);
+                EventLog.WriteEntry(msg, EventLogEntryType.Information);
+            }
+            else
+            {
+                DebugHelper.WriteException(ex, msg);
+                EventLog.WriteEntry(ex.Message + "\n" + ex.StackTrace, EventLogEntryType.Error);
+            }
         }
     }
 }

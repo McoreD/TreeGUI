@@ -49,6 +49,26 @@ namespace TreeGUI
             }
         }
 
+        public static string LogsAppFilePath
+        {
+            get
+            {
+                string logsFolder = Path.Combine(PersonalFolder, "Logs");
+                string filename = string.Format("TreeGUI-Log-{0:yyyy-MM}.txt", DateTime.Now);
+                return Path.Combine(logsFolder, filename);
+            }
+        }
+
+        public static string LogsSvcFilePath
+        {
+            get
+            {
+                string logsFolder = Path.Combine(PersonalFolder, "Logs");
+                string filename = string.Format("TreeGUISvc-Log-{0:yyyy-MM}.txt", DateTime.Now);
+                return Path.Combine(logsFolder, filename);
+            }
+        }
+
         public static void LoadSettings()
         {
             Settings = Settings.Load(SettingsFilePath);

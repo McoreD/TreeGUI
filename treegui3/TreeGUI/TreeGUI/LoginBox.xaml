@@ -20,9 +20,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <md:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=UserNameBox, Path=BorderBrush}" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="UserNameBox" md:TextFieldAssist.Hint="User name" BorderThickness="0,0,0,1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
-                <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
-                <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="PasswordBox" md:TextFieldAssist.Hint="Password" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="UserNameBox" md:TextFieldAssist.Hint="User name" BorderThickness="0,0,0,1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="4,0,0,0" />
+                <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,4,0,0" />
+                <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="PasswordBox" md:TextFieldAssist.Hint="Password" Margin="4,4,0,0" />
             </Grid>
             <DockPanel LastChildFill="true">
                 <Button x:Name="btnCancel" Command="{x:Static md:DialogHost.CloseDialogCommand}" CommandParameter="2" Margin="10 0 0 0" Content="_Cancel" HorizontalContentAlignment="Center" />

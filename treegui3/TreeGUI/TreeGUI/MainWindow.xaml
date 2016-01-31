@@ -54,11 +54,16 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
+
                 <MenuItem Header="Fol_ders">
                     <MenuItem x:Name="miFolderOpenDir" Header="Browse folder..." Click="miFolderOpenDir_Click" />
                     <MenuItem x:Name="miFolderOpenOutputDir" Header="Browse output folder..." Click="miFolderOpenOutputDir_Click" />
                 </MenuItem>
-                <MenuItem Header="_Logs" />
+                <MenuItem Header="_Logs">
+                    <MenuItem x:Name="miLogsApp" Header="Application log..." Click="miLogsApp_Click" />
+                    <MenuItem x:Name="miLogsSvc" Header="Service log..." Click="miLogsSvc_Click" />
+                </MenuItem>
+
                 <MenuItem Header="_Tools">
                     <MenuItem Header="_Options..." Click="ToolsSettings_Click">
                         <MenuItem.Icon>
@@ -74,6 +79,7 @@
                         <MenuItem x:Name="miToolsSvcStop" Header="Stop..." Click="miToolsSvcStop_Click"  ></MenuItem>
                     </MenuItem>
                 </MenuItem>
+
                 <MenuItem Header="_Help">
                     <MenuItem Header="_Version History..." Click="HelpVersionHistory_Click" />
                     <MenuItem Header="_About..." Click="HelpAbout_Click" />

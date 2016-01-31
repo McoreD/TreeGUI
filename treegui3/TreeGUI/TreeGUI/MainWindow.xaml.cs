@@ -20,9 +20,13 @@ namespace TreeGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Methods
+
         public MainWindow()
         {
             InitializeComponent();
+            DebugHelper.Init(Program.LogsAppFilePath);
+
             Program.LoadSettings();
 
             string[] args = Environment.GetCommandLineArgs();
@@ -47,7 +51,7 @@ namespace TreeGUI
                 Program.ConfigFilePath = filePath;
                 lbFolders.Items.Clear();
                 Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
-                UpdateWindowUI(filePath);
+                UpdateWindowUI();
             }
         }
 
@@ -74,16 +78,16 @@ namespace TreeGUI
                 Program.ConfigFilePath = dlg.FileName;
                 Program.Config.SaveAsync(Program.ConfigFilePath);
                 Program.ConfigEdited = false;
-                UpdateWindowUI(Program.ConfigFilePath);
+                UpdateWindowUI();
                 return true;
             }
 
             return false;
         }
 
-        private void UpdateWindowUI(string configName = Program.ConfigNewFileName)
+        private void UpdateWindowUI()
         {
-            if (File.Exists(configName)) configName = Path.GetFileName(configName);
+            string configName = File.Exists(Program.ConfigFilePath) ? Path.GetFileName(Program.ConfigFilePath) : Program.ConfigNewFileName;
 
             Title = $"TreeGUI - {configName}";
             miToolsConfig.Header = $"{configName} Properties...";
@@ -96,12 +100,7 @@ namespace TreeGUI
             miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.CustomDirectory);
         }
 
-        private async void Window_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = await IsConfigNotSaved();
-
-            Program.SaveSettings();
-        }
+        #endregion Methods
 
         private async Task<bool> IsConfigNotSaved()
         {
@@ -116,6 +115,13 @@ namespace TreeGUI
             }
 
             return false;
+        }
+
+        private async void Window_Closing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = await IsConfigNotSaved();
+
+            Program.SaveSettings();
         }
 
         #region File menu
@@ -200,6 +206,20 @@ namespace TreeGUI
         }
 
         #endregion Folders menu
+
+        #region Logs menu
+
+        private void miLogsApp_Click(object sender, RoutedEventArgs e)
+        {
+            Helpers.OpenFile(Program.LogsAppFilePath);
+        }
+
+        private void miLogsSvc_Click(object sender, RoutedEventArgs e)
+        {
+            Helpers.OpenFile(Program.LogsSvcFilePath);
+        }
+
+        #endregion Logs menu
 
         #region Tools menu
 
