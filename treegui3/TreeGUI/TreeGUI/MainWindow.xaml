@@ -11,7 +11,7 @@
 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"   AllowDrop="True" Drop="Window_Drop">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="FileNewCommandBinding_Executed" CanExecute="FileNewCommandBinding_CanExecute" />
         <CommandBinding Command="ApplicationCommands.Open" Executed="FileOpenCommandBinding_Executed" CanExecute="FileOpenCommandBinding_CanExecute" />

@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using ShareX.HelpersLib;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -128,14 +129,19 @@ namespace TreeGUI
             return false;
         }
 
-        #endregion Methods
-
-        private async void Window_Closing(object sender, CancelEventArgs e)
+        private void AddFolders(IEnumerable<string> dirs)
         {
-            // e.Cancel = await IsConfigNotSaved();
-            SaveConfig();
-            Program.SaveSettings();
+            if (dirs.Count() > 0)
+                dirs.ForEach(dir =>
+                {
+                    lbFolders.Items.Add(dir);
+                    Program.Config.Folders.Add(dir);
+                });
+
+            Program.ConfigEdited = true;
         }
+
+        #endregion Methods
 
         #region File menu
 
@@ -343,13 +349,7 @@ namespace TreeGUI
 
                 if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    foreach (string filename in dlg.FileNames)
-                    {
-                        lbFolders.Items.Add(filename);
-                        Program.Config.Folders.Add(filename);
-                    }
-
-                    Program.ConfigEdited = true;
+                    AddFolders(dlg.FileNames);
                 }
             }
         }
@@ -383,6 +383,19 @@ namespace TreeGUI
         private void lbFolders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateWindowUI();
+        }
+
+        private async void Window_Closing(object sender, CancelEventArgs e)
+        {
+            // e.Cancel = await IsConfigNotSaved();
+            SaveConfig();
+            Program.SaveSettings();
+        }
+
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+            AddFolders(paths.Where(dir => Directory.Exists(dir)));
         }
     }
 }
