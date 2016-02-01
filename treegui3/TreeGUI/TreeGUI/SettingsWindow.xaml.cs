@@ -28,7 +28,7 @@ namespace TreeGUI
 
         private void propertyGrid_PropertyValueChanged(object sender, PropertyValueChangedEventArgs e)
         {
-            Program.Settings.OnSettingsChanged(e);
+            Program.Settings.TriggerSettingsChange();
         }
     }
 }
