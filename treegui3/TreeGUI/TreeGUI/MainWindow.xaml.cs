@@ -47,14 +47,17 @@ namespace TreeGUI
             }
         }
 
-        private void Config_SettingsSaved(object sender, EventArgs e)
-        {
-            Program.ConfigEdited = false;
-        }
-
-        private void MainWindow_SettingsChanged(object sender, EventArgs e)
+        private void MainWindow_SettingsChanged(Settings settings)
         {
             this.Topmost = Program.Settings.AlwaysOnTop;
+        }
+
+        private void Config_SettingsSaved(Config settings, string filePath, bool result)
+        {
+            if (result)
+            {
+                Program.ConfigEdited = false;
+            }
         }
 
         private void LoadConfig(string filePath)

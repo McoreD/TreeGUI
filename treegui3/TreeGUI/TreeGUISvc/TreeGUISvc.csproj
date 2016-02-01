@@ -54,6 +54,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="IndexerHelper.cs" />
+    <Compile Include="TreeGUISettings.cs" />
     <Compile Include="TreeGUISvc.cs">
       <SubType>Component</SubType>
     </Compile>

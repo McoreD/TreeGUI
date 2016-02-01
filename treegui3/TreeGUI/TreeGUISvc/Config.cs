@@ -1,15 +1,10 @@
-﻿using ShareX.HelpersLib;
-using ShareX.IndexerLib;
-using System;
+﻿using ShareX.IndexerLib;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TreeGUI
 {
-    public class Config : SettingsBase<Config>
+    public class Config : TreeGUISettings<Config>
     {
         [Browsable(false)]
         public List<string> Folders { get; set; } = new List<string>();

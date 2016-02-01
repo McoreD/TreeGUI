@@ -1,14 +1,8 @@
-﻿using ShareX.HelpersLib;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace TreeGUI
 {
-    public class Settings : SettingsBase<Settings>
+    public class Settings : TreeGUISettings<Settings>
     {
         [Category("Indexer Service")]
         public int LoadSettingsHz { get; set; } = 2;
