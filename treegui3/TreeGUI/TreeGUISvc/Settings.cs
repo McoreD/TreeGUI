@@ -15,5 +15,8 @@ namespace TreeGUI
 
         [Category("App")]
         public bool AlwaysOnTop { get; set; }
+
+        [Category("App")]
+        public bool IsDarkTheme { get; set; }
     }
 }

@@ -16,16 +16,16 @@ using System.Windows.Input;
 
 namespace TreeGUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public ICommand ToggleThemeCommand { get; } = new SimpleCommand(o => ApplyTheme((bool)o));
+
         #region Methods
 
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
             DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
@@ -44,6 +44,16 @@ namespace TreeGUI
             else
             {
                 UpdateWindowUI();
+            }
+        }
+
+        private static void ApplyTheme(bool isDarkTheme)
+        {
+            new PaletteHelper().SetLightDark(isDarkTheme);
+
+            if (Program.Settings != null)
+            {
+                Program.Settings.IsDarkTheme = isDarkTheme;
             }
         }
 
@@ -106,6 +116,8 @@ namespace TreeGUI
             string configName = File.Exists(Program.ConfigFilePath) ? Path.GetFileName(Program.ConfigFilePath) : Program.ConfigNewFileName;
 
             Title = $"TreeGUI - {configName}";
+            ApplyTheme(Program.Settings.IsDarkTheme);
+            tbIsDarkTheme.IsChecked = Program.Settings.IsDarkTheme;
             miToolsConfig.Header = $"{configName} Properties...";
             btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
             btnIndex.IsEnabled = lbFolders.Items.Count > 0;
