@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TreeGUI
 {
@@ -20,6 +21,6 @@ namespace TreeGUI
         public bool IsDarkTheme { get; set; }
 
         [Browsable(false)]
-        public MemoryPersister MRU2 { get; set; } = new MemoryPersister();
+        public List<string> MruFileList { get; set; } = new List<string>();
     }
 }

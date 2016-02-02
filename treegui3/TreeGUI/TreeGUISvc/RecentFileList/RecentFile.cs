@@ -13,7 +13,7 @@ namespace TreeGUI
         public int Number = 0;
         public string FilePath { get; set; }
 
-        public string DisplayPath { get { return FilePath; } }
+        public string DisplayPath { get { return Path.GetFileName(FilePath); } }
 
         public MenuItem MenuItem = null;
 

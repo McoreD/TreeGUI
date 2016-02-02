@@ -61,7 +61,7 @@ namespace TreeGUI
 
         public RecentFileList()
         {
-            Persister = new RegistryPersister();
+            Persister = new ListPersister();
 
             MaxNumberOfFiles = 9;
             MaxPathLength = 50;
