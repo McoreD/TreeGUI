@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeGUISvc", "TreeGUISvc\TreeGUISvc.csproj", "{67371FFA-60C1-428E-BDEF-307711C7DE5F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareX.IndexerLib", "..\..\..\ShareX\ShareX.IndexerLib\ShareX.IndexerLib.csproj", "{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeGUI", "TreeGUI\TreeGUI.csproj", "{6CC8E331-8424-48F3-B5F0-7970C4FE4671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHelpersLib", "WpfHelpersLib\WpfHelpersLib.csproj", "{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,12 @@ Global
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Steam|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Steam|Any CPU.Build.0 = Release|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Steam|Any CPU.ActiveCfg = Release|Any CPU
+		{10DA9F0C-AB4D-4ECD-8143-8D86DFC8853B}.Steam|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

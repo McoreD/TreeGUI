@@ -31,6 +31,7 @@ namespace TreeGUI
             Program.LoadSettings();
             Program.Settings.SettingsChanged += MainWindow_SettingsChanged;
             Program.Config.SettingsSaved += Config_SettingsSaved;
+            RecentFileList.MenuClick += (s, e) => LoadConfig(e.Filepath);
 
             string[] args = Environment.GetCommandLineArgs();
 
@@ -207,6 +208,7 @@ namespace TreeGUI
                         Arguments = dlg.FileName
                     };
                     JumpList.AddToRecentCategory(jumpTask);
+                    RecentFileList.InsertFile(dlg.FileName);
                 }
             }
         }

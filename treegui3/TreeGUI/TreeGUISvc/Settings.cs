@@ -18,5 +18,8 @@ namespace TreeGUI
 
         [Category("App")]
         public bool IsDarkTheme { get; set; }
+
+        [Browsable(false)]
+        public MemoryPersister MRU2 { get; set; } = new MemoryPersister();
     }
 }

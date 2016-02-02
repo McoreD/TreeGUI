@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TreeGUI</RootNamespace>
     <AssemblyName>TreeGUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -186,6 +186,10 @@
     <ProjectReference Include="..\TreeGUISvc\TreeGUISvc.csproj">
       <Project>{67371ffa-60c1-428e-bdef-307711c7de5f}</Project>
       <Name>TreeGUISvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfHelpersLib\WpfHelpersLib.csproj">
+      <Project>{10da9f0c-ab4d-4ecd-8143-8d86dfc8853b}</Project>
+      <Name>WpfHelpersLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
