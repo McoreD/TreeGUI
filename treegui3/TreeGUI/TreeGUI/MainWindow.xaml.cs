@@ -59,7 +59,9 @@ namespace TreeGUI
 
         private void MainWindow_SettingsChanged(Settings settings)
         {
-            this.Topmost = Program.Settings.AlwaysOnTop;
+            Topmost = settings.AlwaysOnTop;
+            tbIsDarkTheme.IsChecked = settings.IsDarkTheme;
+            ApplyTheme(settings.IsDarkTheme);
         }
 
         private void Config_SettingsSaved(Config settings, string filePath, bool result)
@@ -129,7 +131,21 @@ namespace TreeGUI
             miFolderOpenOutputDir.IsEnabled = Directory.Exists(Program.Config.CustomDirectory);
         }
 
-        private async Task<bool> IsConfigNotSaved()
+        private bool IsConfigNotSaved()
+        {
+            if (Program.ConfigEdited)
+            {
+                MessageBoxResult result = MessageBox.Show($"Do you want to save changes to {Program.ConfigFileName}?", "TreeGUI", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    return !SaveConfig();
+                }
+            }
+
+            return false;
+        }
+
+        private async Task<bool> IsConfigNotSavedAsync()
         {
             if (Program.ConfigEdited)
             {
@@ -167,7 +183,7 @@ namespace TreeGUI
 
         private async void FileNewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!await IsConfigNotSaved())
+            if (!await IsConfigNotSavedAsync())
             {
                 Program.LoadNewConfig();
                 lbFolders.Items.Clear();
@@ -177,7 +193,7 @@ namespace TreeGUI
 
         private async void FileOpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!await IsConfigNotSaved())
+            if (!await IsConfigNotSavedAsync())
             {
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.Filter = Program.ConfigFileFilter;
@@ -399,9 +415,9 @@ namespace TreeGUI
             UpdateWindowUI();
         }
 
-        private async void Window_Closing(object sender, CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
-            e.Cancel = await IsConfigNotSaved();
+            e.Cancel = IsConfigNotSaved();
 
             Program.SaveSettings();
         }

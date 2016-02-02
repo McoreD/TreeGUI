@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Michael\Documents\GitHub\TreeGUI\treegui4\TreeGUI\bin\x64\Release\TreeGUI_4.0.1.0_x64.appx
+SymbolPackage=C:\Users\Michael\Documents\GitHub\TreeGUI\treegui4\TreeGUI\AppPackages\TreeGUI_4.0.1.0_Test\TreeGUI_4.0.1.0_x64.appxsym
