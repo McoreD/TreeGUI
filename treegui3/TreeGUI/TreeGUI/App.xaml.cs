@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shell;
 
 namespace TreeGUI
 {
@@ -13,5 +14,13 @@ namespace TreeGUI
     /// </summary>
     public partial class App : Application
     {
+        private JumpList JumpList = new JumpList() { ShowRecentCategory = true };
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            JumpList.SetJumpList(Application.Current, JumpList);
+
+            base.OnStartup(e);
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TreeGUI
 {
-    public class TreeGUISettings<T> : SettingsBase<T> where T : TreeGUISettings<T>, new()
+    public class SettingsBaseEx<T> : SettingsBase<T> where T : SettingsBaseEx<T>, new()
     {
         public delegate void SettingsChangedEventHandler(T settings);
         public event SettingsChangedEventHandler SettingsChanged;

@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace TreeGUI
 {
-    public class Config : TreeGUISettings<Config>
+    public class Config : SettingsBaseEx<Config>
     {
         [Browsable(false)]
         public List<string> Folders { get; set; } = new List<string>();

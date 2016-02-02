@@ -2,7 +2,7 @@
 
 namespace TreeGUI
 {
-    public class Settings : TreeGUISettings<Settings>
+    public class Settings : SettingsBaseEx<Settings>
     {
         [Category("Indexer Service")]
         public int LoadSettingsHz { get; set; } = 2;

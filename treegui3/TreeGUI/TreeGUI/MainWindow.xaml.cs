@@ -1,6 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using ShareX.HelpersLib;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Shell;
 
 namespace TreeGUI
 {
@@ -184,6 +184,13 @@ namespace TreeGUI
                 if (dlg.ShowDialog() == true)
                 {
                     LoadConfig(dlg.FileName);
+                    JumpTask jumpTask = new JumpTask()
+                    {
+                        Title = Path.GetFileNameWithoutExtension(dlg.FileName),
+                        ApplicationPath = Assembly.GetAssembly(this.GetType()).Location,
+                        Arguments = dlg.FileName
+                    };
+                    JumpList.AddToRecentCategory(jumpTask);
                 }
             }
         }
@@ -353,19 +360,11 @@ namespace TreeGUI
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (CommonFileDialog.IsPlatformSupported)
+            FolderSelectDialog fsd = new FolderSelectDialog();
+            fsd.Title = "Select foldet to index";
+            if (fsd.ShowDialog())
             {
-                CommonOpenFileDialog dlg = new CommonOpenFileDialog();
-                dlg.EnsureReadOnly = true;
-                dlg.IsFolderPicker = true;
-                dlg.AllowNonFileSystemItems = false;
-                dlg.Multiselect = true;
-                dlg.Title = "Select folder to index";
-
-                if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
-                {
-                    AddFolders(dlg.FileNames);
-                }
+                AddFolders(new string[] { fsd.FileName });
             }
         }
 
@@ -402,8 +401,8 @@ namespace TreeGUI
 
         private async void Window_Closing(object sender, CancelEventArgs e)
         {
-            // e.Cancel = await IsConfigNotSaved();
-            SaveConfig();
+            e.Cancel = await IsConfigNotSaved();
+
             Program.SaveSettings();
         }
 
