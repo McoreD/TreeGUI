@@ -82,6 +82,10 @@ namespace TreeGUI
                 Program.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
                 UpdateWindowUI();
             }
+            else
+            {
+                RecentFileList.RemoveFile(filePath);
+            }
         }
 
         public bool SaveConfig()

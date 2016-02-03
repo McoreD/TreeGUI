@@ -27,7 +27,8 @@ namespace TreeGUI
                 Program.Settings.MruFileList.Remove(filepath);
             }
 
-            Program.Settings.MruFileList.Insert(0, filepath);
+            if (insert)
+                Program.Settings.MruFileList.Insert(0, filepath);
 
             if (Program.Settings.MruFileList.Count > max)
             {
