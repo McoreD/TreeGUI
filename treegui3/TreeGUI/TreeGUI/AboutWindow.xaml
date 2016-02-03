@@ -6,8 +6,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeGUI"
         mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="About Window" Height="300" Width="300" Icon="TreeGUI.ico" WindowStartupLocation="CenterScreen">
-    <StackPanel Orientation="Vertical">
-        <RichTextBox x:Name="rtbAbout"></RichTextBox>
-    </StackPanel>
+    <DockPanel>
+        <GroupBox Header="Running from" DockPanel.Dock="Top">
+            <TextBox x:Name="txtLocation"></TextBox>
+        </GroupBox>
+        <GroupBox Header="Loaded assemblies" Margin="8">
+            <ListBox x:Name="lbAssemblies" />
+        </GroupBox>
+    </DockPanel>
 </Window>

@@ -373,7 +373,7 @@ namespace TreeGUI
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow dlg = new AboutWindow();
-            dlg.ShowDialog();
+            dlg.Show();
         }
 
         #endregion Help menu
@@ -432,6 +432,11 @@ namespace TreeGUI
         {
             string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop, true);
             AddFolders(paths.Where(dir => Directory.Exists(dir)));
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }

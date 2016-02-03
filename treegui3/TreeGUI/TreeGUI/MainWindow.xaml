@@ -9,10 +9,9 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="TreeGUI" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="TreeGUI.ico" MinWidth="600" MinHeight="400" Width="600" Height="500"
-
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"   AllowDrop="True" Drop="Window_Drop">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"   AllowDrop="True" Drop="Window_Drop" Closed="Window_Closed">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="FileNewCommandBinding_Executed" CanExecute="FileNewCommandBinding_CanExecute" />
         <CommandBinding Command="ApplicationCommands.Open" Executed="FileOpenCommandBinding_Executed" CanExecute="FileOpenCommandBinding_CanExecute" />

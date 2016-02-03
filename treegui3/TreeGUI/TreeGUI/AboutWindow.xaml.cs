@@ -23,7 +23,10 @@ namespace TreeGUI
         public AboutWindow()
         {
             InitializeComponent();
-            rtbAbout.AppendText($"Running from:\n{Assembly.GetAssembly(this.GetType()).Location}");
+
+            txtLocation.AppendText(Assembly.GetAssembly(this.GetType()).Location);
+
+            App.LoadedAssemblies.ForEach(x => lbAssemblies.Items.Add($"{x}\n"));
         }
     }
 }

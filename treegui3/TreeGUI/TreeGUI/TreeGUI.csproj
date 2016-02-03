@@ -183,6 +183,10 @@
       <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
       <Name>ShareX.IndexerLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TreeCLI\TreeCLI.csproj">
+      <Project>{8d5b672b-ef9d-4b99-a0ee-23b3b9834c85}</Project>
+      <Name>TreeCLI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TreeGUISvc\TreeGUISvc.csproj">
       <Project>{67371ffa-60c1-428e-bdef-307711c7de5f}</Project>
       <Name>TreeGUISvc</Name>

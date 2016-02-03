@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\ShareX\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
+      <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
+      <Name>ShareX.IndexerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
