@@ -62,9 +62,6 @@
     <Compile Include="RecentFileList\MenuClickEventArgs.cs" />
     <Compile Include="RecentFileList\RecentFile.cs" />
     <Compile Include="RecentFileList\RecentFileList.cs" />
-    <Compile Include="RecentFileList\RegistryPersister.cs" />
-    <Compile Include="RecentFileList\SmartStream.cs" />
-    <Compile Include="RecentFileList\XmlPersister.cs" />
     <Compile Include="SettingsBaseEx.cs" />
     <Compile Include="TreeGUISvc.cs">
       <SubType>Component</SubType>
