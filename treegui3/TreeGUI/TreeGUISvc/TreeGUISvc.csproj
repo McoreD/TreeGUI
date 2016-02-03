@@ -85,10 +85,6 @@
       <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
       <Name>ShareX.IndexerLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WpfHelpersLib\WpfHelpersLib.csproj">
-      <Project>{10da9f0c-ab4d-4ecd-8143-8d86dfc8853b}</Project>
-      <Name>WpfHelpersLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
