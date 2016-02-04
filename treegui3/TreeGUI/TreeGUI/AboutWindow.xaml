@@ -9,13 +9,17 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="About Window" Height="300" Width="300" Icon="TreeGUI.ico" WindowStartupLocation="CenterScreen">
+        Title="About Window" Height="300" Width="300" Icon="TreeGUI.ico" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" MinHeight="400" MinWidth="400">
     <DockPanel>
-        <GroupBox Header="Running from" DockPanel.Dock="Top">
+        <GroupBox Header="Running from" DockPanel.Dock="Top" Margin="8,8,8,0">
             <TextBox x:Name="txtLocation"></TextBox>
         </GroupBox>
-        <GroupBox Header="Loaded assemblies" Margin="8">
-            <ListBox x:Name="lbAssemblies" />
+        <DockPanel DockPanel.Dock="Bottom" Margin="8,0,8,8">
+            <Button x:Name="btnWebsite" Content="_Website" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnWebsite_Click" />
+            <Button x:Name="btnOk" Content="_Ok" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" HorizontalAlignment="Right" Click="btnOk_Click" />
+        </DockPanel>
+        <GroupBox Header="Loaded assemblies" Margin="8" DockPanel.Dock="Top">
+            <ListBox x:Name="lbAssemblies" ScrollViewer.VerticalScrollBarVisibility="Visible" />
         </GroupBox>
     </DockPanel>
 </Window>

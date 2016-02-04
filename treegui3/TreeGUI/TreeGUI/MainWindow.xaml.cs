@@ -383,7 +383,7 @@ namespace TreeGUI
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             FolderSelectDialog fsd = new FolderSelectDialog();
-            fsd.Title = "Select foldet to index";
+            fsd.Title = "Select folder to index";
             if (fsd.ShowDialog())
             {
                 AddFolders(new string[] { fsd.FileName });

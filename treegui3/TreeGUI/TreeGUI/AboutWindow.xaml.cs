@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShareX.HelpersLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -26,7 +27,17 @@ namespace TreeGUI
 
             txtLocation.AppendText(Assembly.GetAssembly(this.GetType()).Location);
 
-            App.LoadedAssemblies.ForEach(x => lbAssemblies.Items.Add($"{x}\n"));
+            App.LoadedAssemblies.ForEach(x => lbAssemblies.Items.Add(x));
+        }
+
+        private void btnWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            URLHelpers.OpenURL("https://github.com/McoreD/TreeGUI");
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
