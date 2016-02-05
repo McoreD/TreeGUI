@@ -95,7 +95,7 @@
                 <Button x:Name="btnMoveDown" Content="Move _down" Margin="10,0,0,0" Click="btnMoveDown_Click" />
                 <Button x:Name="btnIndex" Content="_Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
             </DockPanel>
-            <ListBox x:Name="lbFolders" Margin="10" SelectionChanged="lbFolders_SelectionChanged" />
+            <ListBox x:Name="lbFolders" Margin="10" SelectionChanged="lbFolders_SelectionChanged" MouseDoubleClick="lbFolders_MouseDoubleClick" />
         </DockPanel>
     </md:DialogHost>
 </Window>

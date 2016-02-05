@@ -168,13 +168,16 @@ namespace TreeGUI
         private void AddFolders(IEnumerable<string> dirs)
         {
             if (dirs.Count() > 0)
+            {
                 dirs.ForEach(dir =>
                 {
                     lbFolders.Items.Add(dir);
                     Program.Config.Folders.Add(dir);
                 });
 
-            Program.ConfigEdited = true;
+                UpdateWindowUI();
+                Program.ConfigEdited = true;
+            }
         }
 
         #endregion Methods
@@ -437,6 +440,12 @@ namespace TreeGUI
         private void Window_Closed(object sender, EventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void lbFolders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lbFolders.SelectedIndex > 0)
+                Helpers.OpenFile(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
         }
     }
 }
