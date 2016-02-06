@@ -52,7 +52,7 @@ namespace TreeGUI
 
         private void UpdateTimers()
         {
-            timerIndexer.Interval = Program.Settings.LoadSettingsHz * 3600 * 1000;
+            timerSettingsReader.Interval = Program.Settings.LoadSettingsHz * 3600 * 1000;
             timerIndexer.Interval = Program.Settings.IndexsHz * 3600 * 1000;
         }
 
