@@ -5,6 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,7 +28,41 @@ namespace TreeGUI
         public MainPage()
         {
             this.InitializeComponent();
-     
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
+
+            base.OnNavigatedTo(e);
+        }
+
+        private async void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker() { CommitButtonText = "Add" };
+            folderPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                lbFolders.Items.Add(folder.Name);
+            }
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnMoveUp_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnMoveDown_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnIndex_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
