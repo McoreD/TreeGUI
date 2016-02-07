@@ -29,13 +29,13 @@ namespace ShareX.IndexerLib
 {
     public enum IndexerOutput
     {
-        //        [Description("Text")]
+        [Description("Text")]
         Txt,
-        //        [Description("HTML")]
+        [Description("HTML")]
         Html,
-        //        [Description("XML")]
+        [Description("XML")]
         Xml,
-        //        [Description("JSON")]
+        [Description("JSON")]
         Json
     }
 }
