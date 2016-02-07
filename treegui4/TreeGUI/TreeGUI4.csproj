@@ -113,6 +113,7 @@
     <None Include="TreeGUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -131,6 +132,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelpersLib\HelpersLib.csproj">
+      <Project>{11503b8f-5d23-414a-83ac-30d8eddc8135}</Project>
+      <Name>HelpersLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TreeLib\TreeLib.csproj">
+      <Project>{567a8492-8bf1-4c4b-88cb-4ce1d2cdff65}</Project>
+      <Name>TreeLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

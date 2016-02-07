@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using HelpersLib;
+using System;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,24 +19,19 @@ namespace TreeGUI
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
             btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
-
-            base.OnNavigatedTo(e);
         }
 
         private async void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            FolderPicker folderPicker = new FolderPicker() { CommitButtonText = "Add" };
-            folderPicker.SuggestedStartLocation = PickerLocationId.Desktop;
-            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            FolderPicker dlg = new FolderPicker() { CommitButtonText = "Add" };
+            dlg.SuggestedStartLocation = PickerLocationId.Desktop;
+            dlg.FileTypeFilter.Add("*");
+            StorageFolder folder = await dlg.PickSingleFolderAsync();
             if (folder != null)
             {
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                lbFolders.Items.Add(folder.Name);
+                lbFolders.Items.Add(folder.Path);
             }
         }
 
@@ -61,8 +47,11 @@ namespace TreeGUI
         {
         }
 
-        private void btnIndex_Click(object sender, RoutedEventArgs e)
+        private async void btnIndex_Click(object sender, RoutedEventArgs e)
         {
+            MessageDialog dlg = new MessageDialog(AppInfo.Version);
+            dlg.Commands.Add(new UICommand("Ok") { Id = 0 });
+            var result = await dlg.ShowAsync();
         }
     }
 }
