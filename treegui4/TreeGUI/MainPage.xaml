@@ -5,16 +5,16 @@
     xmlns:local="using:TreeGUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Unloaded="Page_Unloaded">
 
-    <StackPanel Orientation="Vertical" Padding="10">
-        <ListBox x:Name="lbFolders" BorderThickness="1"></ListBox>
-        <StackPanel Orientation="Horizontal">
+    <RelativePanel>
+        <ListBox  x:Name="lbFolders" BorderThickness="1"></ListBox>
+        <StackPanel  Orientation="Vertical" Padding="10">
             <Button x:Name="btnAdd" Content="Add" Margin="10,0,0,0" />
             <Button x:Name="btnRemove" Content="Remove" Margin="10,0,0,0" Click="btnRemove_Click" />
             <Button x:Name="btnMoveUp" Content="Move up" Margin="10,0,0,0" Click="btnMoveUp_Click" />
             <Button x:Name="btnMoveDown" Content="Move down" Margin="10,0" Click="btnMoveDown_Click" />
-            <Button x:Name="btnIndex" Content="Index" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnIndex_Click" />
+            <Button x:Name="btnIndex" Content="Index" Margin="10,0,0,0" Click="btnIndex_Click" />
         </StackPanel>
-    </StackPanel>
+    </RelativePanel>
 </Page>

@@ -9,7 +9,7 @@ namespace HelpersLib
         {
             get
             {
-                var assembly = typeof(Assembly).GetTypeInfo().Assembly;
+                var assembly = typeof(AppInfo).GetTypeInfo().Assembly;
                 // In some PCL profiles the above line is: var assembly = typeof(MyType).Assembly;
                 var assemblyName = new AssemblyName(assembly.FullName);
                 return assemblyName.Version.ToString();

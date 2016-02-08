@@ -51,9 +51,9 @@ namespace HelpersLib
             return Save(FilePath);
         }
 
-        public void SaveAsync(string filePath)
+        public Task<bool> SaveAsync(string filePath)
         {
-            Task.Run(() => Save(filePath));
+            return Task.Run(() => Save(filePath));
         }
 
         public void SaveAsync()

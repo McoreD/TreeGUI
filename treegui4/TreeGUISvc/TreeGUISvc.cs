@@ -21,7 +21,7 @@ namespace TreeGUISvc
         {
             InitializeComponent();
             this.EventLog.Log = "Application";
-            DebugHelper.Init(TreeLib.Program.LogsSvcFilePath);
+            DebugHelper.Init(AppHelper.LogsSvcFilePath);
 
             this.CanHandlePowerEvent = true;
             this.CanHandleSessionChangeEvent = true;
@@ -32,9 +32,9 @@ namespace TreeGUISvc
 
         protected override void OnStart(string[] args)
         {
-            WriteLog($"Reading settings from {TreeLib.Program.SettingsFilePath}");
+            WriteLog($"Reading settings from {AppHelper.SettingsFilePath}");
 
-            TreeLib.Program.LoadSettings();
+            AppHelper.LoadSettings();
             UpdateTimers();
 
             timerIndexer.Elapsed += TimerIndexer_Elapsed;
@@ -48,22 +48,22 @@ namespace TreeGUISvc
 
         private void UpdateTimers()
         {
-            timerSettingsReader.Interval = TreeLib.Program.Settings.LoadSettingsHz * 3600 * 1000;
-            timerIndexer.Interval = TreeLib.Program.Settings.IndexsHz * 3600 * 1000;
+            timerSettingsReader.Interval = AppHelper.Settings.LoadSettingsHz * 3600 * 1000;
+            timerIndexer.Interval = AppHelper.Settings.IndexsHz * 3600 * 1000;
         }
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
-            WriteLog($"Settings reloaded. Working directory: {TreeLib.Program.Settings.ConfigFolder}");
-            TreeLib.Program.LoadSettings();
+            WriteLog($"Settings reloaded. Working directory: {AppHelper.Settings.ConfigFolder}");
+            AppHelper.LoadSettings();
             UpdateTimers();
         }
 
         private void TimerIndexer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (Directory.Exists(TreeLib.Program.Settings.ConfigFolder))
+            if (Directory.Exists(AppHelper.Settings.ConfigFolder))
             {
-                var configFiles = Directory.GetFiles(TreeLib.Program.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);
+                var configFiles = Directory.GetFiles(AppHelper.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);
                 configFiles.ToList<string>().ForEach(tgcjFile =>
                 {
                     try

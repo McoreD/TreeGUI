@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TreeLib
 {
-    public static class Program
+    public static class AppHelper
     {
         public const string ConfigFileFilter = "TreeGUI config files (*.tgcj)|*.tgcj";
         public static string DefaultPersonalFolder = null;
