@@ -31,19 +31,32 @@ namespace TreeGUI
             btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
         }
 
-        private void LoadConfig(string filePath)
+        private async void LoadConfig(string filePath)
         {
-            if (AppHelper.LoadConfig(filePath))
+            bool success = await AppHelper.LoadConfigAsync(filePath);
+
+            if (success)
             {
                 AppHelper.ConfigFilePath = filePath;
                 lbFolders.Items.Clear();
                 AppHelper.Config.Folders.ForEach(x => lbFolders.Items.Add(x));
-                //  UpdateWindowUI();
+                UpdateWindowUI();
             }
             else
             {
                 // RecentFileList.RemoveFile(filePath);
             }
+        }
+
+        private void UpdateWindowUI()
+        {
+            Task.Run(() =>
+            {
+                string configName = File.Exists(AppHelper.ConfigFilePath) ? Path.GetFileName(AppHelper.ConfigFilePath) : AppHelper.ConfigNewFileName;
+            });
+
+            btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
+            btnIndex.IsEnabled = lbFolders.Items.Count > 0;
         }
 
         public Task<bool> SaveConfig()
@@ -120,6 +133,25 @@ namespace TreeGUI
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             AppHelper.SaveSettings();
+        }
+
+        private void appBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SettingsPage));
+        }
+
+        private async void btnConfigOpen_Click(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.List;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".tgcj");
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFileToken", file);
+                LoadConfig(file.Path);
+            }
         }
     }
 }

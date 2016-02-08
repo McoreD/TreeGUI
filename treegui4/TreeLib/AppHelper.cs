@@ -79,6 +79,11 @@ namespace TreeLib
             Settings = Settings.Load(SettingsFilePath);
         }
 
+        public static Task<bool> LoadConfigAsync(string filePath)
+        {
+            return Task.Run(() => LoadConfig(filePath));
+        }
+
         public static bool LoadConfig(string filePath)
         {
             if (File.Exists(filePath))
