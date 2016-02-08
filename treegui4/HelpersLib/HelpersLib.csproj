@@ -42,6 +42,7 @@
     <Compile Include="AppInfo.cs" />
     <Compile Include="DebugHelper.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="HelpersOptions.cs" />
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Logger.cs" />

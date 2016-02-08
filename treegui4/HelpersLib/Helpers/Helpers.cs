@@ -41,5 +41,19 @@ namespace HelpersLib
                 }
             }
         }
+
+        public static string GetValidFileName(string fileName, string separator = "")
+        {
+            char[] invalidFileNameChars = Path.GetInvalidFileNameChars();
+            if (string.IsNullOrEmpty(separator))
+            {
+                return new string(fileName.Where(c => !invalidFileNameChars.Contains(c)).ToArray());
+            }
+            else
+            {
+                invalidFileNameChars.ForEach(x => fileName = fileName.Replace(x.ToString(), separator));
+                return fileName.Trim().Replace(separator + separator, separator);
+            }
+        }
     }
 }

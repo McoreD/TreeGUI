@@ -35,8 +35,15 @@ namespace TreeGUI
             }
         }
 
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        private async void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            TreeLib.Program.DefaultPersonalFolder = ApplicationData.Current.RoamingFolder.Path;
+            TreeLib.Program.LoadSettings();
+            MessageDialog dlg = new MessageDialog(TreeLib.Program.Settings.IndexsHz.ToString());
+            dlg.Commands.Add(new UICommand("Ok") { Id = 0 });
+            var result = await dlg.ShowAsync();
+            TreeLib.Program.Settings.IndexsHz = 7;
+            TreeLib.Program.Settings.Save();
         }
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
