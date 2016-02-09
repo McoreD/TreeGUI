@@ -15,6 +15,7 @@
             <Button x:Name="btnMoveDown" Content="Move down" Margin="10,0" Click="btnMoveDown_Click" />
             <Button x:Name="btnIndex" Content="Index" Margin="10,0,0,0" Click="btnIndex_Click" />
             <Button x:Name="btnConfigOpen" Content="Open config" Click="btnConfigOpen_Click" />
+            <Button x:Name="btnConfigSave" Content="Save config" Click="btnConfigSave_Click"></Button>
         </StackPanel>
         <ListBox  x:Name="lbFolders" BorderThickness="1" MinHeight="104" HorizontalContentAlignment="Left"></ListBox>
         <AppBarButton x:Name="appBarButton" HorizontalAlignment="Stretch" Icon="Accept" Label="appbarbutton" VerticalAlignment="Stretch" Width="Auto" Click="appBarButton_Click" />

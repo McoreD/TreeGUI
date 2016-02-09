@@ -56,6 +56,11 @@ namespace HelpersLib
             return Task.Run(() => Save(filePath));
         }
 
+        public Task<bool> SaveAsync(Stream s)
+        {
+            return Task.Run(() => SaveInternal(this, s));
+        }
+
         public void SaveAsync()
         {
             SaveAsync(FilePath);
@@ -90,17 +95,7 @@ namespace HelpersLib
 
                         string tempFilePath = filePath + ".temp";
 
-                        using (FileStream fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read))
-                        using (StreamWriter streamWriter = new StreamWriter(fileStream))
-                        using (JsonTextWriter jsonWriter = new JsonTextWriter(streamWriter))
-                        {
-                            jsonWriter.Formatting = Formatting.Indented;
-                            JsonSerializer serializer = new JsonSerializer();
-                            serializer.ContractResolver = new WritablePropertiesOnlyResolver();
-                            serializer.Converters.Add(new StringEnumConverter());
-                            serializer.Serialize(jsonWriter, obj);
-                            jsonWriter.Flush();
-                        }
+                        isSuccess = SaveInternal(obj, new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read));
 
                         if (File.Exists(filePath))
                         {
@@ -125,6 +120,39 @@ namespace HelpersLib
             finally
             {
                 DebugHelper.WriteLine("{0} save {1}: {2}", typeName, isSuccess ? "successful" : "failed", filePath);
+            }
+
+            return isSuccess;
+        }
+
+        private static bool SaveInternal(object obj, Stream s)
+        {
+            bool isSuccess = false;
+
+            try
+            {
+                if (s != null)
+                {
+                    lock (obj)
+                    {
+                        using (StreamWriter streamWriter = new StreamWriter(s))
+                        using (JsonTextWriter jsonWriter = new JsonTextWriter(streamWriter))
+                        {
+                            jsonWriter.Formatting = Formatting.Indented;
+                            JsonSerializer serializer = new JsonSerializer();
+                            serializer.ContractResolver = new WritablePropertiesOnlyResolver();
+                            serializer.Converters.Add(new StringEnumConverter());
+                            serializer.Serialize(jsonWriter, obj);
+                            jsonWriter.Flush();
+                        }
+
+                        isSuccess = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                DebugHelper.WriteException(e);
             }
 
             return isSuccess;

@@ -1,0 +1,27 @@
+{
+  "Folders": [
+    "\\\\diskstation\\tv",
+    "\\\\diskstation\\movies",
+    "\\\\diskstation\\var\\TV",
+    "\\\\diskstation\\music\\Film series"
+  ],
+  "IndexerSettings": {
+    "Output": "Html",
+    "SkipHiddenFolders": true,
+    "SkipHiddenFiles": true,
+    "MaxDepthLevel": 0,
+    "ShowSizeInfo": true,
+    "AddFooter": true,
+    "IndentationText": "|___",
+    "AddEmptyLineAfterFolders": false,
+    "UseCustomCSSFile": false,
+    "CustomCSSFilePath": "",
+    "UseAttribute": true,
+    "CreateParseableJson": true
+  },
+  "OutputMode": "CustomDirectory",
+  "CustomDirectory": "D:\\OneDrive\\Documents\\DiskStation",
+  "FileName": "Index",
+  "PrependDate": true,
+  "ApplicationVersion": "3.0.0"
+}

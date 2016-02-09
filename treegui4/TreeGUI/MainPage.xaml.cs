@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -59,34 +60,39 @@ namespace TreeGUI
             btnIndex.IsEnabled = lbFolders.Items.Count > 0;
         }
 
-        public Task<bool> SaveConfig()
+        public async Task<bool> SaveConfig()
         {
-            if (!AppHelper.ConfigEdited) return null;
+            if (!AppHelper.ConfigEdited) return false;
 
+            bool success;
             if (!File.Exists(AppHelper.ConfigFilePath))
             {
-                return SaveAsConfig();
+                success = await SaveAsConfig();
             }
             else
             {
-                AppHelper.Config.SaveAsync(AppHelper.ConfigFilePath);
-                return null;
+                success = await AppHelper.Config.SaveAsync(AppHelper.ConfigFilePath);
             }
+
+            return success;
         }
 
         public async Task<bool> SaveAsConfig()
         {
-            FileSavePicker savePicker = new FileSavePicker();
-            savePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            savePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
-            savePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
+            FileSavePicker fileSavePicker = new FileSavePicker();
+            fileSavePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            fileSavePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
+            fileSavePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
 
-            StorageFile file = await savePicker.PickSaveFileAsync();
+            StorageFile file = await fileSavePicker.PickSaveFileAsync();
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
                 AppHelper.ConfigFilePath = file.Path;
-                await AppHelper.Config.SaveAsync(AppHelper.ConfigFilePath);
+
+                IRandomAccessStream o = await file.OpenAsync(FileAccessMode.ReadWrite);
+                await AppHelper.Config.SaveAsync(o.AsStreamForWrite());
+
                 FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
                 return status == FileUpdateStatus.Complete;
             }
@@ -106,6 +112,8 @@ namespace TreeGUI
             {
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
                 lbFolders.Items.Add(folder.Path);
+                UpdateWindowUI();
+                AppHelper.ConfigEdited = true;
             }
         }
 
@@ -152,6 +160,11 @@ namespace TreeGUI
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFileToken", file);
                 LoadConfig(file.Path);
             }
+        }
+
+        private async void btnConfigSave_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(() => SaveConfig());
         }
     }
 }
