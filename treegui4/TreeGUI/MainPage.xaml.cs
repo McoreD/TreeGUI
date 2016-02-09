@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using TreeLib;
 using Windows.Storage;
@@ -99,6 +100,13 @@ namespace TreeGUI
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            AppHelper.ConfigEdited = lbFolders.SelectedItems.Count > 0;
+
+            lbFolders.SelectedItems.Cast<string>().ToList().ForEach(x =>
+            {
+                AppHelper.Config.Folders.Remove(x);
+                lbFolders.Items.Remove(x);
+            });
         }
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
@@ -109,11 +117,9 @@ namespace TreeGUI
         {
         }
 
-        private async void btnIndex_Click(object sender, RoutedEventArgs e)
+        private void btnIndex_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog dlg = new MessageDialog(AppInfo.Version);
-            dlg.Commands.Add(new UICommand("Ok") { Id = 0 });
-            var result = await dlg.ShowAsync();
+            IndexerHelper.Index(AppHelper.Config);
         }
 
         #endregion Buttons
@@ -137,6 +143,7 @@ namespace TreeGUI
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
+                if (ConfigData != null) ConfigData.Dispose();
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFileToken", file);
                 await LoadConfig(file.Path);
                 ConfigData = await file.OpenAsync(FileAccessMode.ReadWrite);
