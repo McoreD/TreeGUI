@@ -22,6 +22,8 @@ namespace TreeGUI
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private IRandomAccessStream ConfigData { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -32,7 +34,15 @@ namespace TreeGUI
             btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
         }
 
-        private async void LoadConfig(string filePath)
+        private void AddFolder(string dirPath)
+        {
+            AppHelper.Config.Folders.Add(dirPath);
+            lbFolders.Items.Add(dirPath);
+            UpdateWindowUI();
+            AppHelper.ConfigEdited = true;
+        }
+
+        private async Task<bool> LoadConfig(string filePath)
         {
             bool success = await AppHelper.LoadConfigAsync(filePath);
 
@@ -47,6 +57,18 @@ namespace TreeGUI
             {
                 // RecentFileList.RemoveFile(filePath);
             }
+
+            return success;
+        }
+
+        private async Task<bool> SaveConfig()
+        {
+            if (File.Exists(AppHelper.ConfigFilePath))
+            {
+                return await AppHelper.Config.SaveAsync(ConfigData.AsStreamForWrite());
+            }
+
+            return false;
         }
 
         private void UpdateWindowUI()
@@ -60,46 +82,6 @@ namespace TreeGUI
             btnIndex.IsEnabled = lbFolders.Items.Count > 0;
         }
 
-        public async Task<bool> SaveConfig()
-        {
-            if (!AppHelper.ConfigEdited) return false;
-
-            bool success;
-            if (!File.Exists(AppHelper.ConfigFilePath))
-            {
-                success = await SaveAsConfig();
-            }
-            else
-            {
-                success = await AppHelper.Config.SaveAsync(AppHelper.ConfigFilePath);
-            }
-
-            return success;
-        }
-
-        public async Task<bool> SaveAsConfig()
-        {
-            FileSavePicker fileSavePicker = new FileSavePicker();
-            fileSavePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            fileSavePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
-            fileSavePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
-
-            StorageFile file = await fileSavePicker.PickSaveFileAsync();
-            if (file != null)
-            {
-                CachedFileManager.DeferUpdates(file);
-                AppHelper.ConfigFilePath = file.Path;
-
-                IRandomAccessStream o = await file.OpenAsync(FileAccessMode.ReadWrite);
-                await AppHelper.Config.SaveAsync(o.AsStreamForWrite());
-
-                FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
-                return status == FileUpdateStatus.Complete;
-            }
-
-            return false;
-        }
-
         #region Buttons
 
         private async void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -111,9 +93,7 @@ namespace TreeGUI
             if (folder != null)
             {
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                lbFolders.Items.Add(folder.Path);
-                UpdateWindowUI();
-                AppHelper.ConfigEdited = true;
+                AddFolder(folder.Path);
             }
         }
 
@@ -158,27 +138,34 @@ namespace TreeGUI
             if (file != null)
             {
                 StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFileToken", file);
-                LoadConfig(file.Path);
+                await LoadConfig(file.Path);
+                ConfigData = await file.OpenAsync(FileAccessMode.ReadWrite);
             }
         }
 
         private async void btnConfigSave_Click(object sender, RoutedEventArgs e)
         {
-            FileSavePicker fileSavePicker = new FileSavePicker();
-            fileSavePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            fileSavePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
-            fileSavePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
+            bool success = false;
+            await Task.Run(async () => success = await SaveConfig());
 
-            StorageFile file = await fileSavePicker.PickSaveFileAsync();
-            if (file != null)
+            if (!success)
             {
-                CachedFileManager.DeferUpdates(file);
-                AppHelper.ConfigFilePath = file.Path;
+                FileSavePicker fileSavePicker = new FileSavePicker();
+                fileSavePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                fileSavePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
+                fileSavePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
 
-                IRandomAccessStream o = await file.OpenAsync(FileAccessMode.ReadWrite);
-                await AppHelper.Config.SaveAsync(o.AsStreamForWrite());
+                StorageFile file = await fileSavePicker.PickSaveFileAsync();
+                if (file != null)
+                {
+                    CachedFileManager.DeferUpdates(file);
+                    AppHelper.ConfigFilePath = file.Path;
 
-                FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+                    IRandomAccessStream o = await file.OpenAsync(FileAccessMode.ReadWrite);
+                    await AppHelper.Config.SaveAsync(o.AsStreamForWrite());
+
+                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+                }
             }
         }
     }
