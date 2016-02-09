@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TreeGUI</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Index">Index</string>
+</resources>

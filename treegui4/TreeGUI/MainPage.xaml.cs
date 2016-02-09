@@ -164,7 +164,22 @@ namespace TreeGUI
 
         private async void btnConfigSave_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() => SaveConfig());
+            FileSavePicker fileSavePicker = new FileSavePicker();
+            fileSavePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            fileSavePicker.FileTypeChoices.Add("TreeGUI config files (*.tgcj)", new List<string>() { ".tgcj" });
+            fileSavePicker.SuggestedFileName = AppHelper.ConfigNewFileName;
+
+            StorageFile file = await fileSavePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                CachedFileManager.DeferUpdates(file);
+                AppHelper.ConfigFilePath = file.Path;
+
+                IRandomAccessStream o = await file.OpenAsync(FileAccessMode.ReadWrite);
+                await AppHelper.Config.SaveAsync(o.AsStreamForWrite());
+
+                FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+            }
         }
     }
 }
