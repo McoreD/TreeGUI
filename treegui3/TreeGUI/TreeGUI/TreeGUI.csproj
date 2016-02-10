@@ -63,8 +63,8 @@
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=1.4.0.473, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.1.4.0.473\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=1.4.1.485, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.1.4.1.485\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -82,13 +82,33 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.ListBox, Version=2.8.15465.16500, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.ListBox.2.8.15465.16500\lib\net40\Xceed.Wpf.ListBox.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox, Version=2.9.15603.14400, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.2.9.15603.14400\lib\net40\Xceed.Wpf.ListBox.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Lib\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +125,7 @@
     <Compile Include="CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers.cs" />
     <Compile Include="LoginBox.xaml.cs">
       <DependentUpon>LoginBox.xaml</DependentUpon>
     </Compile>
@@ -175,11 +196,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ShareX\ShareX.HelpersLib\ShareX.HelpersLib.csproj">
-      <Project>{327750e1-9fb7-4cc3-8aea-9bc42180cad3}</Project>
-      <Name>ShareX.HelpersLib</Name>
+    <ProjectReference Include="..\..\..\treegui4\HelpersLib\HelpersLib.csproj">
+      <Project>{11503b8f-5d23-414a-83ac-30d8eddc8135}</Project>
+      <Name>HelpersLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\ShareX\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
+    <ProjectReference Include="..\..\..\treegui4\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
       <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
       <Name>ShareX.IndexerLib</Name>
     </ProjectReference>
@@ -202,6 +223,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TreeGUI.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="System.IO.FileSystem.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.IO.FileSystem.Primitives.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Threading.Overlapped.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

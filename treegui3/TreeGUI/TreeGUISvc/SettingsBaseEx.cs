@@ -1,4 +1,4 @@
-﻿using ShareX.HelpersLib;
+﻿using HelpersLib;
 
 namespace TreeGUI
 {

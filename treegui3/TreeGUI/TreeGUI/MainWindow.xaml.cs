@@ -1,6 +1,6 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using HelpersLib;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
-using ShareX.HelpersLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -277,12 +277,12 @@ namespace TreeGUI
 
         private void miLogsApp_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.OpenFile(Program.LogsAppFilePath);
+            Process.Start(Program.LogsAppFilePath);
         }
 
         private void miLogsSvc_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.OpenFile(Program.LogsSvcFilePath);
+            Process.Start(Program.LogsSvcFilePath);
         }
 
         #endregion Logs menu
@@ -385,11 +385,11 @@ namespace TreeGUI
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            FolderSelectDialog fsd = new FolderSelectDialog();
-            fsd.Title = "Select folder to index";
-            if (fsd.ShowDialog())
+            OpenFileDialog dlg = new OpenFileDialog();
+
+            if (dlg.ShowDialog() == true)
             {
-                AddFolders(new string[] { fsd.FileName });
+                AddFolders(new string[] { Path.GetDirectoryName(dlg.FileName) });
             }
         }
 
@@ -444,8 +444,8 @@ namespace TreeGUI
 
         private void lbFolders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (lbFolders.SelectedIndex > 0)
-                Helpers.OpenFile(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
+            if (lbFolders.SelectedIndex > -1)
+                Process.Start(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
         }
     }
 }

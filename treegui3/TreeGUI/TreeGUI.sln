@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeGUISvc", "TreeGUISvc\TreeGUISvc.csproj", "{67371FFA-60C1-428E-BDEF-307711C7DE5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareX.HelpersLib", "..\..\..\ShareX\ShareX.HelpersLib\ShareX.HelpersLib.csproj", "{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareX.IndexerLib", "..\..\..\ShareX\ShareX.IndexerLib\ShareX.IndexerLib.csproj", "{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeGUI", "TreeGUI\TreeGUI.csproj", "{6CC8E331-8424-48F3-B5F0-7970C4FE4671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpersLib", "..\..\treegui4\HelpersLib\HelpersLib.csproj", "{11503B8F-5D23-414A-83AC-30D8EDDC8135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareX.IndexerLib", "..\..\treegui4\ShareX.IndexerLib\ShareX.IndexerLib.csproj", "{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,24 +24,24 @@ Global
 		{67371FFA-60C1-428E-BDEF-307711C7DE5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67371FFA-60C1-428E-BDEF-307711C7DE5F}.Steam|Any CPU.ActiveCfg = Release|Any CPU
 		{67371FFA-60C1-428E-BDEF-307711C7DE5F}.Steam|Any CPU.Build.0 = Release|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Steam|Any CPU.ActiveCfg = Steam|Any CPU
-		{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}.Steam|Any CPU.Build.0 = Steam|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Steam|Any CPU.ActiveCfg = Steam|Any CPU
-		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Steam|Any CPU.Build.0 = Steam|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Steam|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC8E331-8424-48F3-B5F0-7970C4FE4671}.Steam|Any CPU.Build.0 = Release|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Steam|Any CPU.ActiveCfg = Release|Any CPU
+		{11503B8F-5D23-414A-83AC-30D8EDDC8135}.Steam|Any CPU.Build.0 = Release|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Steam|Any CPU.ActiveCfg = Steam|Any CPU
+		{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}.Steam|Any CPU.Build.0 = Steam|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

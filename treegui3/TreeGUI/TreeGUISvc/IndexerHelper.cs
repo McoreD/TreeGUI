@@ -1,4 +1,4 @@
-﻿using ShareX.HelpersLib;
+﻿using HelpersLib;
 using ShareX.IndexerLib;
 using System;
 using System.Collections.Generic;

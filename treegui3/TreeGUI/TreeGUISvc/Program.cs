@@ -1,4 +1,4 @@
-﻿using ShareX.HelpersLib;
+﻿using HelpersLib;
 using System;
 using System.Collections;
 using System.Configuration.Install;
@@ -35,7 +35,7 @@ namespace TreeGUI
             {
                 if (!string.IsNullOrEmpty(CustomPersonalPath))
                 {
-                    return Helpers.ExpandFolderVariables(CustomPersonalPath);
+                    return CustomPersonalPath;
                 }
 
                 return DefaultPersonalFolder;

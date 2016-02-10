@@ -28,25 +28,25 @@ namespace ShareX.IndexerLib
     public class IndexerSettings
     {
         //        [Category("Indexer"), DefaultValue(IndexerOutput.Html), Description("Indexer output type."), TypeConverter(typeof(EnumDescriptionConverter))]
-        public IndexerOutput Output { get; set; }
+        public IndexerOutput Output { get; set; } = IndexerOutput.Html;
 
         //        [Category("Indexer"), DefaultValue(true), Description("Don't index hidden folders.")]
-        public bool SkipHiddenFolders { get; set; }
+        public bool SkipHiddenFolders { get; set; } = true;
 
         //        [Category("Indexer"), DefaultValue(true), Description("Don't index hidden files.")]
-        public bool SkipHiddenFiles { get; set; }
+        public bool SkipHiddenFiles { get; set; } = true;
 
         //        [Category("Indexer"), DefaultValue(0), Description("Maximum folder depth level for indexing. 0 means unlimited.")]
         public int MaxDepthLevel { get; set; }
 
         //        [Category("Indexer"), DefaultValue(true), Description("Write folder and file size.")]
-        public bool ShowSizeInfo { get; set; }
+        public bool ShowSizeInfo { get; set; } = true;
 
         //        [Category("Indexer"), DefaultValue(true), Description("Add footer information to show application and generated time.")]
-        public bool AddFooter { get; set; }
+        public bool AddFooter { get; set; } = true;
 
         //        [Category("Indexer / Text"), DefaultValue("|___"), Description("Padding text to show indentation in the folder hierarchy.")]
-        public string IndentationText { get; set; }
+        public string IndentationText { get; set; } = "|___";
 
         //        [Category("Indexer / Text"), DefaultValue(false), Description("Adds empty line after folders.")]
         public bool AddEmptyLineAfterFolders { get; set; }
@@ -58,10 +58,10 @@ namespace ShareX.IndexerLib
         public string CustomCSSFilePath { get; set; }
 
         //        [Category("Indexer / XML"), DefaultValue(true), Description("Folder/File information (name, size etc.) will be written as attribute.")]
-        public bool UseAttribute { get; set; }
+        public bool UseAttribute { get; set; } = true;
 
         //        [Category("Indexer / JSON"), DefaultValue(true), Description("Creates parseable but longer json output.")]
-        public bool CreateParseableJson { get; set; }
+        public bool CreateParseableJson { get; set; } = true;
 
         //        [JsonIgnore]
         public bool BinaryUnits;

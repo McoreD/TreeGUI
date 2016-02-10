@@ -41,7 +41,7 @@ namespace ShareX.IndexerLib
             {
                 var assembly = typeof(IndexerHtml).GetTypeInfo().Assembly;
                 string[] resources = assembly.GetManifestResourceNames();
-                using (StreamReader sr = new StreamReader(assembly.GetManifestResourceStream("IndexerDefault.css")))
+                using (StreamReader sr = new StreamReader(assembly.GetManifestResourceStream("ShareX.IndexerLib.Resources.IndexerDefault.css")))
                 {
                     return sr.ReadToEnd();
                 }

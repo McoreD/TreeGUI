@@ -76,7 +76,7 @@ namespace ShareX.IndexerLib
                 {
                     DirectoryInfo currentDirectoryInfo = new DirectoryInfo(folderPath);
 
-                    foreach (DirectoryInfo directoryInfo in currentDirectoryInfo.EnumerateDirectories())
+                    foreach (DirectoryInfo directoryInfo in currentDirectoryInfo.GetDirectories())
                     {
                         if (settings.SkipHiddenFolders && directoryInfo.Attributes.HasFlag(FileAttributes.Hidden))
                         {
