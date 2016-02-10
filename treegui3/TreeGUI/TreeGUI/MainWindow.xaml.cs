@@ -444,7 +444,7 @@ namespace TreeGUI
 
         private void lbFolders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (lbFolders.SelectedIndex > 0)
+            if (lbFolders.SelectedIndex > -1)
                 Helpers.OpenFile(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
         }
     }
