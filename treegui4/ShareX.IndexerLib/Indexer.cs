@@ -24,9 +24,13 @@
 #endregion License Information (GPL v3)
 
 using HelpersLib;
+using PCLStorage;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ShareX.IndexerLib
 {
@@ -68,6 +72,8 @@ namespace ShareX.IndexerLib
 
         protected FolderInfo GetFolderInfo(string folderPath, int level = 0)
         {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+
             FolderInfo folderInfo = new FolderInfo(folderPath);
 
             if (settings.MaxDepthLevel == 0 || level < settings.MaxDepthLevel)
@@ -75,9 +81,11 @@ namespace ShareX.IndexerLib
                 try
                 {
                     DirectoryInfo currentDirectoryInfo = new DirectoryInfo(folderPath);
+                    List<IFolder> folders = GetDirectories(folderPath);
 
-                    foreach (DirectoryInfo directoryInfo in currentDirectoryInfo.EnumerateDirectories())
+                    foreach (IFolder folder in folders)
                     {
+                        DirectoryInfo directoryInfo = new DirectoryInfo(folder.Path);
                         if (settings.SkipHiddenFolders && directoryInfo.Attributes.HasFlag(FileAttributes.Hidden))
                         {
                             continue;
@@ -106,6 +114,22 @@ namespace ShareX.IndexerLib
             }
 
             return folderInfo;
+        }
+
+        public List<IFolder> GetDirectories(string startingDir)
+        {
+            List<IFolder> folders = null;
+            Task.Run(async () => { folders = await GetDirectoriesAsync(startingDir); }).Wait();
+            return folders;
+        }
+
+        private async Task<List<IFolder>> GetDirectoriesAsync(string startingDir)
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder folder = await rootFolder.GetFolderAsync(startingDir, System.Threading.CancellationToken.None);
+            IList<IFolder> folders = await folder.GetFoldersAsync(System.Threading.CancellationToken.None);
+
+            return folders.ToList();
         }
     }
 }
