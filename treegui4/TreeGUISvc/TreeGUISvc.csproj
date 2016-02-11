@@ -62,10 +62,6 @@
       <Project>{11503b8f-5d23-414a-83ac-30d8eddc8135}</Project>
       <Name>HelpersLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
-      <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
-      <Name>ShareX.IndexerLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TreeLib\TreeLib.csproj">
       <Project>{567a8492-8bf1-4c4b-88cb-4ce1d2cdff65}</Project>
       <Name>TreeLib</Name>

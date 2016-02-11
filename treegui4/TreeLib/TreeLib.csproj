@@ -53,7 +53,7 @@
       <Name>HelpersLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
-      <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
+      <Project>{85e95e08-f80d-4541-80e5-ae49baa9a348}</Project>
       <Name>ShareX.IndexerLib</Name>
     </ProjectReference>
   </ItemGroup>
