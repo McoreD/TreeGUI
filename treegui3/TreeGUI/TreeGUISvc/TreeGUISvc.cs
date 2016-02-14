@@ -1,15 +1,16 @@
-﻿using ShareX.HelpersLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using ShareX.HelpersLib;
 
 namespace TreeGUI
 {
@@ -58,8 +59,8 @@ namespace TreeGUI
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
-            WriteLog($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
             Program.LoadSettings();
+            WriteLog($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
             UpdateTimers();
         }
 
