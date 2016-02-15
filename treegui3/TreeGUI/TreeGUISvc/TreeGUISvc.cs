@@ -68,6 +68,11 @@ namespace TreeGUI
 
         private void TimerIndexer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            Index();
+        }
+
+        private void Index()
+        {
             if (Directory.Exists(Program.Settings.ConfigFolder))
             {
                 var configFiles = Directory.GetFiles(Program.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);
@@ -110,6 +115,12 @@ namespace TreeGUI
 
         protected override void OnCustomCommand(int command)
         {
+            switch (command)
+            {
+                case (int)ServiceCommand.Index:
+                    Index();
+                    break;
+            }
             base.OnCustomCommand(command);
         }
 

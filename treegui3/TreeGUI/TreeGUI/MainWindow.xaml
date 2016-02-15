@@ -75,6 +75,7 @@
                             <MenuItem x:Name="miToolsSvcUninstall" Header="Uninstall..." Click="miToolsSvcUninstall_Click" ></MenuItem>
                             <MenuItem x:Name="miToolsSvcStart" Header="Start..." Click="miToolsSvcStart_Click"  ></MenuItem>
                             <MenuItem x:Name="miToolsSvcStop" Header="Stop..." Click="miToolsSvcStop_Click"  ></MenuItem>
+                            <MenuItem x:Name="miToolsSvcIndex" Header="Index..." Click="miToolsSvcIndex_Click"  ></MenuItem>
                         </MenuItem>
                     </MenuItem>
                     <MenuItem Header="_Help">

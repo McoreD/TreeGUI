@@ -362,6 +362,15 @@ namespace TreeGUI
             Process.Start(psi);
         }
 
+        private void miToolsSvcIndex_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = "-index";
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
         #endregion Windows Service
 
         #endregion Tools menu

@@ -132,6 +132,9 @@ namespace TreeGUI
                     case "-stop":
                         StopService();
                         break;
+                    case "-index":
+                        Index();
+                        break;
                 }
             }
         }
@@ -258,6 +261,28 @@ namespace TreeGUI
                         controller.WaitForStatus(ServiceControllerStatus.Stopped,
                              TimeSpan.FromSeconds(10));
                     }
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
+
+        public static void Index()
+        {
+            if (!IsInstalled()) return;
+
+            using (ServiceController controller = new ServiceController("TreeGUISvc"))
+            {
+                try
+                {
+                    controller.Refresh();
+                    if (controller.Status != ServiceControllerStatus.Running)
+                    {
+                        controller.Start();
+                    }
+                    controller.ExecuteCommand((int)ServiceCommand.Index);
                 }
                 catch
                 {

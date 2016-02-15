@@ -14,4 +14,9 @@ namespace TreeGUI
         [Description("Create index file in a custom directory")]
         CustomDirectory
     }
+
+    public enum ServiceCommand
+    {
+        Index = 128
+    }
 }
