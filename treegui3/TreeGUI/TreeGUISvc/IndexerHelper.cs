@@ -15,7 +15,7 @@ namespace TreeGUI
         {
             string indexDir = config.OutputMode == OutputMode.CustomDirectory ? config.CustomDirectory : dirPath;
 
-            string fileName = Helpers.GetValidFileName($"{indexDir} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
+            string fileName = Helpers.GetValidFileName($"{dirPath} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
 
             if (config.PrependDate)
                 fileName = $"{DateTime.Now.ToString("yyyy-MM-dd")} {fileName}";

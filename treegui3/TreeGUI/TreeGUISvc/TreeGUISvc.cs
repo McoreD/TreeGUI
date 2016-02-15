@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShareX.HelpersLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,6 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using ShareX.HelpersLib;
 
 namespace TreeGUI
 {
@@ -55,12 +55,14 @@ namespace TreeGUI
         {
             timerSettingsReader.Interval = Program.Settings.LoadSettingsHz * 3600 * 1000;
             timerIndexer.Interval = Program.Settings.IndexsHz * 3600 * 1000;
+            WriteLog($"Reading settings every {Program.Settings.LoadSettingsHz} hours.");
+            WriteLog($"Indexing every {Program.Settings.IndexsHz} hours.");
         }
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
             Program.LoadSettings();
-            WriteLog($"Settings reloaded. Working directory: {Program.Settings.ConfigFolder}");
+            WriteLog($"Working directory: {Program.Settings.ConfigFolder}");
             UpdateTimers();
         }
 
