@@ -18,6 +18,9 @@ namespace TreeGUI
         [Description("Custom output directory for index files")]
         public string CustomDirectory { get; set; }
 
+        [Description("Custom subfolders in yyyy-MM-dd format in the custom directory")]
+        public bool CustomDirectoryWithSubfolders { get; set; } = true;
+
         [Description("Index file name")]
         public string FileName { get; set; } = "Index";
 

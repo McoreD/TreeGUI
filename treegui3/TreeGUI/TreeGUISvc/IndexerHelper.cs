@@ -13,7 +13,12 @@ namespace TreeGUI
     {
         public static string GetIndexFilePath(Config config, string dirPath)
         {
-            string indexDir = config.OutputMode == OutputMode.CustomDirectory ? config.CustomDirectory : dirPath;
+            string indexDir = dirPath;
+
+            if (config.OutputMode == OutputMode.CustomDirectory && config.CustomDirectoryWithSubfolders)
+                indexDir = Path.Combine(config.CustomDirectory, DateTime.Now.ToString("yyyy-MM-dd"));
+            else if (config.OutputMode == OutputMode.CustomDirectory)
+                indexDir = config.CustomDirectory;
 
             string fileName = Helpers.GetValidFileName($"{dirPath} {config.FileName}.{config.IndexerSettings.Output.ToString().ToLower()}", " ");
 
