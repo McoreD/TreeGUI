@@ -1,23 +1,20 @@
 ﻿using ShareX.HelpersLib;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.ServiceProcess;
 using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace TreeGUI
 {
     public partial class TreeGUISvc : ServiceBase
     {
-        private static Timer timerIndexer = new Timer();
-        private static Timer timerSettingsReader = new Timer();
+        private Timer timerIndexer = new Timer();
+        private Timer timerSettingsReader = new Timer();
+
+        private StringBuilder debug = new StringBuilder();
 
         internal static string UserName { get; set; }
         internal static string Password { get; set; }
@@ -40,30 +37,35 @@ namespace TreeGUI
             WriteLog($"Reading settings from {Program.SettingsFilePath}");
 
             Program.LoadSettings();
-            UpdateTimers();
 
-            timerIndexer.Elapsed += TimerIndexer_Elapsed;
-            timerIndexer.Start();
+            UpdateTimerSettingsReader();
 
             timerSettingsReader.Elapsed += TimerSettingsReader_Elapsed;
             timerSettingsReader.Start();
 
+            timerIndexer.Interval = Program.Settings.IndexsHz * 3600 * 1000; // everytime interval is updated, count resets
+            timerIndexer.Elapsed += TimerIndexer_Elapsed;
+            timerIndexer.Start();
+
             base.OnStart(args);
         }
 
-        private void UpdateTimers()
+        private void UpdateTimerSettingsReader()
         {
             timerSettingsReader.Interval = Program.Settings.LoadSettingsHz * 3600 * 1000;
-            timerIndexer.Interval = Program.Settings.IndexsHz * 3600 * 1000;
-            WriteLog($"Reading settings every {Program.Settings.LoadSettingsHz} hours.");
-            WriteLog($"Indexing every {Program.Settings.IndexsHz} hours.");
+
+            debug.AppendLine($"Settings read scheduled for {DateTime.Now.AddHours(Program.Settings.LoadSettingsHz).ToString("yyyy-MM-dd HH:mm")}.");
+            debug.AppendLine($"Indexing every {Program.Settings.IndexsHz} hours.");
+
+            WriteLog(debug.ToString());
         }
 
         private void TimerSettingsReader_Elapsed(object sender, ElapsedEventArgs e)
         {
             Program.LoadSettings();
-            WriteLog($"Working directory: {Program.Settings.ConfigFolder}");
-            UpdateTimers();
+            debug.AppendLine($"Working directory: {Program.Settings.ConfigFolder}");
+
+            UpdateTimerSettingsReader();
         }
 
         private void TimerIndexer_Elapsed(object sender, ElapsedEventArgs e)
@@ -73,6 +75,8 @@ namespace TreeGUI
 
         private void Index()
         {
+            WriteLog("Indexing initiated.");
+
             if (Directory.Exists(Program.Settings.ConfigFolder))
             {
                 var configFiles = Directory.GetFiles(Program.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);
@@ -80,7 +84,7 @@ namespace TreeGUI
                 {
                     try
                     {
-                        WriteLog($"Reading {tgcjFile}");
+                        debug.AppendLine($"Reading {tgcjFile}");
                         IndexerHelper.Index(Config.Load(tgcjFile));
                     }
                     catch (Exception ex)
@@ -88,6 +92,8 @@ namespace TreeGUI
                         WriteLog("Indexing", ex);
                     }
                 });
+
+                WriteLog(debug.ToString());
             }
         }
 
@@ -146,6 +152,8 @@ namespace TreeGUI
                 DebugHelper.WriteException(ex, msg);
                 EventLog.WriteEntry(ex.Message + "\n" + ex.StackTrace, EventLogEntryType.Error);
             }
+
+            debug.Clear();
         }
     }
 }

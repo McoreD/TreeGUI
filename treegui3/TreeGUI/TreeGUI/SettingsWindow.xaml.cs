@@ -30,5 +30,10 @@ namespace TreeGUI
         {
             Program.Settings.TriggerSettingsChange();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Program.SaveSettings();
+        }
     }
 }

@@ -303,6 +303,15 @@ namespace TreeGUI
 
         #region Windows Service
 
+        private void RunService(string args)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
+            psi.Arguments = args;
+            psi.Verb = "runas";
+            psi.UseShellExecute = true;
+            Process.Start(psi);
+        }
+
         private async void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
         {
             LoginBoxData result = await ShowLoginAsync("Please enter your password to start the Windows Service using your credentials.");
@@ -310,11 +319,7 @@ namespace TreeGUI
             {
                 try
                 {
-                    ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-                    psi.Arguments = $"-install {result.UserName} {result.Password}";
-                    psi.Verb = "runas";
-                    psi.UseShellExecute = true;
-                    Process.Start(psi);
+                    RunService($"-install {result.UserName} {result.Password}");
                 }
                 catch (Exception ex)
                 {
@@ -325,11 +330,7 @@ namespace TreeGUI
 
         private void miToolsSvcUninstall_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-            psi.Arguments = "-uninstall";
-            psi.Verb = "runas";
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            RunService("-uninstall");
         }
 
         private async Task<LoginBoxData> ShowLoginAsync(string question)
@@ -346,29 +347,22 @@ namespace TreeGUI
 
         private void miToolsSvcStart_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-            psi.Arguments = "-start";
-            psi.Verb = "runas";
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            RunService("-start");
         }
 
         private void miToolsSvcStop_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-            psi.Arguments = "-stop";
-            psi.Verb = "runas";
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            RunService("-stop");
+        }
+
+        private void miToolsSvcRestart_Click(object sender, RoutedEventArgs e)
+        {
+            RunService("-restart");
         }
 
         private void miToolsSvcIndex_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(GetType()).Location), "TreeGUISvc.exe"));
-            psi.Arguments = "-index";
-            psi.Verb = "runas";
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            RunService("-index");
         }
 
         #endregion Windows Service

@@ -25,6 +25,7 @@ namespace TreeGUI
         {
             InitializeComponent();
 
+            Title = $"{Assembly.GetExecutingAssembly().GetName().Name} {Assembly.GetExecutingAssembly().GetName().Version.Major}.{Assembly.GetExecutingAssembly().GetName().Version.Minor}.{Assembly.GetExecutingAssembly().GetName().Version.Build}";
             txtLocation.AppendText(Assembly.GetAssembly(this.GetType()).Location);
 
             App.LoadedAssemblies.ForEach(x => lbAssemblies.Items.Add(x));
