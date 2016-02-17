@@ -75,8 +75,6 @@ namespace TreeGUI
 
         private void Index()
         {
-            WriteLog("Indexing initiated.");
-
             if (Directory.Exists(Program.Settings.ConfigFolder))
             {
                 var configFiles = Directory.GetFiles(Program.Settings.ConfigFolder, "*.tgcj", SearchOption.AllDirectories);

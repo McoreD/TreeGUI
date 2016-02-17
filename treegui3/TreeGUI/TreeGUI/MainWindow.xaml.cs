@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using HelpersLib;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using ShareX.HelpersLib;
 using System;
@@ -417,7 +418,7 @@ namespace TreeGUI
 
         private void btnIndex_Click(object sender, RoutedEventArgs e)
         {
-            IndexerHelper.Index(Program.Config);
+            Task.Run(() => IndexerHelper.Index(Program.Config));
         }
 
         #endregion Buttons

@@ -102,9 +102,6 @@
     <Compile Include="ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomMessageBox.xaml.cs">
-      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LoginBox.xaml.cs">
       <DependentUpon>LoginBox.xaml</DependentUpon>
     </Compile>
@@ -117,10 +114,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConfigWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +175,10 @@
     <ProjectReference Include="..\..\..\..\ShareX\ShareX.IndexerLib\ShareX.IndexerLib.csproj">
       <Project>{750c6f46-2c5a-4488-81d3-3b35ca50f3ee}</Project>
       <Name>ShareX.IndexerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\WpfHelpersLib\HelpersLib\HelpersLib.csproj">
+      <Project>{43b77ceb-6410-43ad-842e-726a129fa4bb}</Project>
+      <Name>HelpersLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreeGUISvc\TreeGUISvc.csproj">
       <Project>{67371ffa-60c1-428e-bdef-307711c7de5f}</Project>
