@@ -48,7 +48,7 @@
     <Compile Include="SettingsBaseEx.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HelpersLib\HelpersLib.csproj">
+    <ProjectReference Include="..\..\..\UwpHelpersLib\HelpersLib.csproj">
       <Project>{11503b8f-5d23-414a-83ac-30d8eddc8135}</Project>
       <Name>HelpersLib</Name>
     </ProjectReference>

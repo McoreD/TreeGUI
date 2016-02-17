@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeGUISvc", "..\TreeGUISvc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareX.IndexerLib", "..\ShareX.IndexerLib\ShareX.IndexerLib.csproj", "{750C6F46-2C5A-4488-81D3-3B35CA50F3EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpersLib", "..\HelpersLib\HelpersLib.csproj", "{11503B8F-5D23-414A-83AC-30D8EDDC8135}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpersLib", "..\..\..\UwpHelpersLib\HelpersLib.csproj", "{11503B8F-5D23-414A-83AC-30D8EDDC8135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
