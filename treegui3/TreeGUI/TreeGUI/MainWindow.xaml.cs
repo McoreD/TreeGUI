@@ -27,7 +27,7 @@ namespace TreeGUI
         {
             InitializeComponent();
             DataContext = this;
-            DebugHelper.Init(Program.LogsAppFilePath);
+            ShareX.HelpersLib.DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
             Program.Settings.SettingsChanged += MainWindow_SettingsChanged;
@@ -260,7 +260,7 @@ namespace TreeGUI
             if (lbFolders.SelectedIndex > -1)
             {
                 string dir = lbFolders.SelectedItem.ToString();
-                Helpers.OpenFolder(dir);
+                ShareX.HelpersLib.Helpers.OpenFolder(dir);
             }
         }
 
@@ -268,7 +268,7 @@ namespace TreeGUI
         {
             if (Directory.Exists(Program.Config.CustomDirectory))
             {
-                Helpers.OpenFolder(Program.Config.CustomDirectory);
+                ShareX.HelpersLib.Helpers.OpenFolder(Program.Config.CustomDirectory);
             }
         }
 
@@ -278,12 +278,12 @@ namespace TreeGUI
 
         private void miLogsApp_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.OpenFile(Program.LogsAppFilePath);
+            ShareX.HelpersLib.Helpers.OpenFile(Program.LogsAppFilePath);
         }
 
         private void miLogsSvc_Click(object sender, RoutedEventArgs e)
         {
-            Helpers.OpenFile(Program.LogsSvcFilePath);
+            ShareX.HelpersLib.Helpers.OpenFile(Program.LogsSvcFilePath);
         }
 
         #endregion Logs menu
@@ -324,7 +324,7 @@ namespace TreeGUI
                 }
                 catch (Exception ex)
                 {
-                    DebugHelper.WriteException(ex);
+                    ShareX.HelpersLib.DebugHelper.WriteException(ex);
                 }
             }
         }
@@ -449,7 +449,7 @@ namespace TreeGUI
         private void lbFolders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (lbFolders.SelectedIndex > -1)
-                Helpers.OpenFile(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
+                ShareX.HelpersLib.Helpers.OpenFile(IndexerHelper.GetIndexFilePath(Program.Config, lbFolders.SelectedValue.ToString()));
         }
     }
 }
