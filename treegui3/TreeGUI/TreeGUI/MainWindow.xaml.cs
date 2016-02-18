@@ -156,8 +156,8 @@ namespace TreeGUI
             if (Program.ConfigEdited)
             {
                 CustomMessageBox messageBox = new CustomMessageBox($"Do you want to save changes to {Program.ConfigFileName}?", "Yes", "No");
-                string result = await DialogHost.Show(messageBox) as string;
-                if (result.Equals("1", StringComparison.InvariantCultureIgnoreCase))
+                int result = (int)await DialogHost.Show(messageBox);
+                if (result == 1)
                 {
                     return !SaveConfig();
                 }
