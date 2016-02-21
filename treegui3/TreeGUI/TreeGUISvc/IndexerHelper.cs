@@ -25,7 +25,7 @@ namespace TreeGUI
             if (config.PrependDate)
                 fileName = $"{DateTime.Now.ToString("yyyy-MM-dd")} {fileName}";
 
-            Helpers.CreateDirectoryIfNotExist(indexDir, false);
+            Helpers.CreateDirectoryIfNotExist(indexDir);
 
             return Path.Combine(indexDir, fileName);
         }

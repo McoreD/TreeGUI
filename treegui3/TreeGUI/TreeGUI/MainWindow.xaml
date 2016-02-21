@@ -86,11 +86,6 @@
                         <MenuItem Header="_About..." Click="HelpAbout_Click" />
                     </MenuItem>
                 </Menu>
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 0 15 0">
-                    <TextBlock VerticalAlignment="Center">Light</TextBlock>
-                    <ToggleButton Name="tbIsDarkTheme" Margin="10 0" Command="{Binding ToggleThemeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
-                    <TextBlock VerticalAlignment="Center">Dark</TextBlock>
-                </StackPanel>
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
                 <Button x:Name="btnAdd" IsDefault="True" Content="_Add" Margin="10,0,0,0" Click="btnAdd_Click" />

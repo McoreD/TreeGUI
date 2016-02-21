@@ -1,4 +1,5 @@
 ﻿using HelpersLib;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using ShareX.HelpersLib;
@@ -19,8 +20,6 @@ namespace TreeGUI
 {
     public partial class MainWindow : Window
     {
-        public ICommand ToggleThemeCommand { get; } = new SimpleCommand(o => ApplyTheme((bool)o));
-
         #region Methods
 
         public MainWindow()
@@ -30,6 +29,8 @@ namespace TreeGUI
             ShareX.HelpersLib.DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
+            new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
+
             Program.Settings.SettingsChanged += MainWindow_SettingsChanged;
             Program.Config.SettingsSaved += Config_SettingsSaved;
             RecentFileList.MenuClick += (s, e) => LoadConfig(e.Filepath);
@@ -52,17 +53,11 @@ namespace TreeGUI
         private static void ApplyTheme(bool isDarkTheme)
         {
             new PaletteHelper().SetLightDark(isDarkTheme);
-
-            if (Program.Settings != null)
-            {
-                Program.Settings.IsDarkTheme = isDarkTheme;
-            }
         }
 
         private void MainWindow_SettingsChanged(Settings settings)
         {
             Topmost = settings.AlwaysOnTop;
-            tbIsDarkTheme.IsChecked = settings.IsDarkTheme;
             ApplyTheme(settings.IsDarkTheme);
         }
 
@@ -125,7 +120,6 @@ namespace TreeGUI
 
             Title = $"TreeGUI - {configName}";
             ApplyTheme(Program.Settings.IsDarkTheme);
-            tbIsDarkTheme.IsChecked = Program.Settings.IsDarkTheme;
             miToolsConfig.Header = $"{configName} Properties...";
             btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
             btnIndex.IsEnabled = lbFolders.Items.Count > 0;

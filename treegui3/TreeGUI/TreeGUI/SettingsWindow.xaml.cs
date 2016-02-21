@@ -1,4 +1,6 @@
-﻿using ShareX.HelpersLib;
+﻿using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
+using ShareX.HelpersLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +23,19 @@ namespace TreeGUI
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        public ICommand ToggleThemeCommand { get; } = new SimpleCommand(o => ApplyTheme((bool)o));
+
         public SettingsWindow()
         {
             InitializeComponent();
             cboLoadSettingsHz.ItemsSource = Enumerable.Range(1, 24).ToArray();
             cboIndexHz.ItemsSource = Enumerable.Range(1, 24).ToArray();
+            new SwatchesProvider().Swatches.ToList<Swatch>().ForEach<Swatch>(x => cboPrimaryColor.Items.Add(x.Name));
 
             chkAlwaysOnTop.IsChecked = Program.Settings.AlwaysOnTop;
             tbIsDarkTheme.IsChecked = Program.Settings.IsDarkTheme;
+            cboPrimaryColor.SelectedItem = Program.Settings.PrimaryColor;
+
             txtConfigFolder.Text = Program.Settings.ConfigFolder;
 
             cboLoadSettingsHz.SelectedValue = Program.Settings.LoadSettingsHz;
@@ -40,11 +47,22 @@ namespace TreeGUI
             tpIndex.SelectedTime = Program.Settings.IndexTime;
         }
 
+        private static void ApplyTheme(bool isDarkTheme)
+        {
+            if (Program.Settings != null)
+            {
+                Program.Settings.IsDarkTheme = isDarkTheme;
+                Program.Settings.TriggerSettingsChange();
+            }
+
+            new PaletteHelper().SetLightDark(isDarkTheme);
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Program.Settings.AlwaysOnTop = chkAlwaysOnTop.IsChecked ?? false;
             Program.Settings.IsDarkTheme = tbIsDarkTheme.IsChecked ?? false;
-            Program.Settings.ConfigFolder = txtConfigFolder.Text;
+            Program.Settings.PrimaryColor = cboPrimaryColor.SelectedItem.ToString();
 
             Program.Settings.LoadSettingsHz = (int)cboLoadSettingsHz.SelectedValue;
 
@@ -64,6 +82,12 @@ namespace TreeGUI
             {
                 txtConfigFolder.Text = dir;
             }
+        }
+
+        private void cboPrimaryColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Program.Settings.PrimaryColor = cboPrimaryColor.SelectedItem.ToString();
+            new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
         }
     }
 }
