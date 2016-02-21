@@ -1,4 +1,5 @@
-﻿using MaterialDesignColors;
+﻿using HelpersLib;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using ShareX.HelpersLib;
 using System;
