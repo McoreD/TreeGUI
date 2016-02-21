@@ -13,6 +13,7 @@ namespace TreeGUI
     {
         private Timer timerIndexer = new Timer();
         private Timer timerSettingsReader = new Timer();
+        private Timer timerTimeOfDay = new Timer() { Interval = 1000 };
 
         private StringBuilder debug = new StringBuilder();
 
@@ -47,7 +48,17 @@ namespace TreeGUI
             timerIndexer.Elapsed += TimerIndexer_Elapsed;
             timerIndexer.Start();
 
+            timerTimeOfDay.Elapsed += TimerTimeOfDay_Elapsed;
+
             base.OnStart(args);
+        }
+
+        private void TimerTimeOfDay_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (DateTime.Now.Hour == Program.Settings.IndexTime.Hour && DateTime.Now.Minute == Program.Settings.IndexTime.Minute)
+            {
+                Index();
+            }
         }
 
         private void UpdateTimerSettingsReader()
@@ -64,6 +75,11 @@ namespace TreeGUI
         {
             Program.LoadSettings();
             debug.AppendLine($"Working directory: {Program.Settings.ConfigFolder}");
+
+            if (Program.Settings.IsIndexSetTime)
+                timerTimeOfDay.Start();
+            else
+                timerTimeOfDay.Stop();
 
             UpdateTimerSettingsReader();
         }

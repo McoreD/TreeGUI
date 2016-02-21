@@ -389,11 +389,10 @@ namespace TreeGUI
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            FolderSelectDialog fsd = new FolderSelectDialog();
-            fsd.Title = "Select folder to index";
-            if (fsd.ShowDialog())
+            string dir = HelpersLib.Helpers.BrowseFolder("Select folder to index");
+            if (!string.IsNullOrEmpty(dir))
             {
-                AddFolders(new string[] { fsd.FileName });
+                AddFolders(new string[] { dir });
             }
         }
 
