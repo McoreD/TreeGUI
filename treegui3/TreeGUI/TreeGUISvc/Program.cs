@@ -88,7 +88,11 @@ namespace TreeGUI
 
         public static void SaveSettings()
         {
-            if (Settings != null) Settings.Save(SettingsFilePath);
+            if (Settings != null)
+            {
+                Settings.TriggerSettingsChange();
+                Settings.Save(SettingsFilePath);
+            }
         }
 
         public static void LoadNewConfig()

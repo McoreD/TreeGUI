@@ -25,12 +25,9 @@ namespace TreeGUI
             if (config.PrependDate)
                 fileName = $"{DateTime.Now.ToString("yyyy-MM-dd")} {fileName}";
 
-            if (Directory.Exists(indexDir))
-            {
-                return Path.Combine(indexDir, fileName);
-            }
+            Helpers.CreateDirectoryIfNotExist(indexDir, false);
 
-            return null;
+            return Path.Combine(indexDir, fileName);
         }
 
         public static void Index(Config config)
@@ -43,12 +40,9 @@ namespace TreeGUI
                 if (!string.IsNullOrEmpty(index))
                 {
                     string filePath = GetIndexFilePath(config, dirPath);
-                    if (!string.IsNullOrEmpty(filePath))
+                    using (StreamWriter sw = new StreamWriter(filePath))
                     {
-                        using (StreamWriter sw = new StreamWriter(filePath))
-                        {
-                            sw.Write(index);
-                        }
+                        sw.Write(index);
                     }
                 }
             });

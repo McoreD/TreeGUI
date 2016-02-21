@@ -49,14 +49,26 @@ namespace TreeGUI
             timerIndexer.Start();
 
             timerTimeOfDay.Elapsed += TimerTimeOfDay_Elapsed;
+            timerTimeOfDay.Start();
 
             base.OnStart(args);
         }
 
         private void TimerTimeOfDay_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (DateTime.Now.Hour == Program.Settings.IndexTime.Hour && DateTime.Now.Minute == Program.Settings.IndexTime.Minute)
+            //debug.AppendLine(Program.Settings.IsIndexSetTime.ToString());
+            //debug.AppendLine($"DateTime.Now.Hour {DateTime.Now.Hour}");
+            //debug.AppendLine($"DateTime.Now.Minute {DateTime.Now.Minute}");
+            //debug.AppendLine($"Program.Settings.IndexTime.Hour.Hour {Program.Settings.IndexTime.Hour}");
+            //debug.AppendLine($"Program.Settings.IndexTime.Hour.Minute {Program.Settings.IndexTime.Minute}");
+            //WriteLog(debug.ToString());
+
+            if (Program.Settings.IsIndexSetTime &&
+                DateTime.Now.Hour == Program.Settings.IndexTime.Hour &&
+                DateTime.Now.Minute == Program.Settings.IndexTime.Minute &&
+                DateTime.Now.Second == 0)
             {
+                debug.AppendLine($"Index at set time initiated.");
                 Index();
             }
         }
@@ -75,11 +87,6 @@ namespace TreeGUI
         {
             Program.LoadSettings();
             debug.AppendLine($"Working directory: {Program.Settings.ConfigFolder}");
-
-            if (Program.Settings.IsIndexSetTime)
-                timerTimeOfDay.Start();
-            else
-                timerTimeOfDay.Stop();
 
             UpdateTimerSettingsReader();
         }
@@ -103,7 +110,7 @@ namespace TreeGUI
                     }
                     catch (Exception ex)
                     {
-                        WriteLog("Indexing", ex);
+                        WriteLog("Indexing error", ex);
                     }
                 });
 
