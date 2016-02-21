@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -30,6 +31,17 @@ namespace TreeGUI
         private void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
             LoadedAssemblies.Add(Path.GetFileName(args.LoadedAssembly.Location));
+        }
+
+        public static void ApplyTheme(bool isDarkTheme)
+        {
+            new PaletteHelper().SetLightDark(isDarkTheme);
+        }
+
+        public static void ApplyPrimaryColor()
+        {
+            if (!string.IsNullOrEmpty(Program.Settings.PrimaryColor))
+                new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
         }
     }
 }

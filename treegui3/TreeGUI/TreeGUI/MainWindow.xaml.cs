@@ -29,7 +29,7 @@ namespace TreeGUI
             ShareX.HelpersLib.DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
-            new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
+            App.ApplyPrimaryColor();
 
             Program.Settings.SettingsChanged += MainWindow_SettingsChanged;
             Program.Config.SettingsSaved += Config_SettingsSaved;
@@ -50,15 +50,10 @@ namespace TreeGUI
             }
         }
 
-        private static void ApplyTheme(bool isDarkTheme)
-        {
-            new PaletteHelper().SetLightDark(isDarkTheme);
-        }
-
         private void MainWindow_SettingsChanged(Settings settings)
         {
             Topmost = settings.AlwaysOnTop;
-            ApplyTheme(settings.IsDarkTheme);
+            App.ApplyTheme(settings.IsDarkTheme);
         }
 
         private void Config_SettingsSaved(Config settings, string filePath, bool result)
@@ -119,7 +114,7 @@ namespace TreeGUI
             string configName = File.Exists(Program.ConfigFilePath) ? Path.GetFileName(Program.ConfigFilePath) : Program.ConfigNewFileName;
 
             Title = $"TreeGUI - {configName}";
-            ApplyTheme(Program.Settings.IsDarkTheme);
+            App.ApplyTheme(Program.Settings.IsDarkTheme);
             miToolsConfig.Header = $"{configName} Properties...";
             btnMoveUp.IsEnabled = btnMoveDown.IsEnabled = lbFolders.Items.Count > 1;
             btnIndex.IsEnabled = lbFolders.Items.Count > 0;

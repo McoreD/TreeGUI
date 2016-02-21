@@ -25,7 +25,7 @@ namespace TreeGUI
 
         [Category("App")]
         public bool IsDarkTheme { get; set; }
-        public string PrimaryColor { get; set; }
+        public string PrimaryColor { get; set; } = "blue";
 
         [Browsable(false)]
         public List<string> MruFileList { get; set; } = new List<string>();
