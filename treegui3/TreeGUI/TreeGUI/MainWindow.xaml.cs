@@ -26,7 +26,7 @@ namespace TreeGUI
         {
             InitializeComponent();
             DataContext = this;
-            ShareX.HelpersLib.DebugHelper.Init(Program.LogsAppFilePath);
+            HelpersLib.DebugHelper.Init(Program.LogsAppFilePath);
 
             Program.LoadSettings();
             App.ApplyPrimaryColor();
