@@ -1,3 +1,7 @@
+Version 3.1 - 2016-02-29
+
+* Index at a set time [Windows Service]
+
 Version 3.0 - 2016-02-06
 
 * Using ShareX Directory Indexer in TreeGUI and TreeGUISvc (Windows Service)

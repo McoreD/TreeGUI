@@ -71,7 +71,7 @@ namespace TreeGUI
 
         private void btnBrowseConfigFolder_Click(object sender, RoutedEventArgs e)
         {
-            string dir = HelpersLib.Helpers.BrowseFolder("Browse config folder...");
+            string dir = Helper.BrowseFolder("Browse config folder...");
             if (!string.IsNullOrEmpty(dir))
             {
                 txtConfigFolder.Text = dir;

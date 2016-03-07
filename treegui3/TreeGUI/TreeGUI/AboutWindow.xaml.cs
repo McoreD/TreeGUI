@@ -1,4 +1,5 @@
-﻿using ShareX.HelpersLib;
+﻿using HelpersLib;
+using ShareX.HelpersLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace TreeGUI
 
         private void btnWebsite_Click(object sender, RoutedEventArgs e)
         {
-            URLHelpers.OpenURL("https://github.com/McoreD/TreeGUI");
+            URLHelper.OpenURL("https://github.com/McoreD/TreeGUI");
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)

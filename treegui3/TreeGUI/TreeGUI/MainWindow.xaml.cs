@@ -378,7 +378,7 @@ namespace TreeGUI
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            string dir = HelpersLib.Helpers.BrowseFolder("Select folder to index");
+            string dir = Helper.BrowseFolder("Select folder to index");
             if (!string.IsNullOrEmpty(dir))
             {
                 AddFolders(new string[] { dir });
