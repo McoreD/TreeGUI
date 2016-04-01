@@ -56,7 +56,8 @@ namespace TreeGUI
 
         private void TimerTimeOfDay_Elapsed(object sender, ElapsedEventArgs e)
         {
-            //debug.AppendLine(Program.Settings.IsIndexSetTime.ToString());
+            //debug.AppendLine($"Working directory: {Program.Settings.ConfigFolder}");
+            //debug.AppendLine($"IsIndexSetTime: { Program.Settings.IsIndexSetTime.ToString()}");
             //debug.AppendLine($"DateTime.Now.Hour {DateTime.Now.Hour}");
             //debug.AppendLine($"DateTime.Now.Minute {DateTime.Now.Minute}");
             //debug.AppendLine($"Program.Settings.IndexTime.Hour.Hour {Program.Settings.IndexTime.Hour}");

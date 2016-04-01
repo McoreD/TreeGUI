@@ -304,6 +304,9 @@ namespace TreeGUI
 
         private async void miToolsSvcInstall_Click(object sender, RoutedEventArgs e)
         {
+            CustomMessageBox messageBox = new CustomMessageBox($"Config folder is empty. Please remember to go to Settings and configure config folder for Windows Service to access *.tgcj files");
+            await DialogHost.Show(messageBox);
+
             LoginBoxData result = await ShowLoginAsync("Please enter your password to start the Windows Service using your credentials.");
             if (result != null)
             {
