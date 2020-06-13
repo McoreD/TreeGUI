@@ -35,13 +35,13 @@ namespace TreeGUI
 
         public static void ApplyTheme(bool isDarkTheme)
         {
-            new PaletteHelper().SetLightDark(isDarkTheme);
+            // new PaletteHelper().SetLightDark(isDarkTheme);
         }
 
         public static void ApplyPrimaryColor()
         {
-            if (!string.IsNullOrEmpty(Program.Settings.PrimaryColor))
-                new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
+            // if (!string.IsNullOrEmpty(Program.Settings.PrimaryColor))
+            //     new PaletteHelper().ReplacePrimaryColor(Program.Settings.PrimaryColor);
         }
     }
 }
